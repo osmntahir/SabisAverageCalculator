@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Average Grade Calculator",
+    "version": "1.0",
+    "description": "This extension calculates the average grades of the course notes on web pages.",
+    "permissions": [
+      "activeTab"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://obs.sabis.sakarya.edu.tr/*"],
+        "js": ["background.js"]
+      }
+    ]
+  }
+  
