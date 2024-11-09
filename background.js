@@ -12,23 +12,23 @@ lessonCards.forEach((card) => {
     // Check for the average grade row
     let averageGradeRow = gradeTable.querySelector('.average-grade-row');
 
+    // Calculate the average grade for display
+    const displayAverageGrade = calculateDisplayAverageGrade(gradeTable);
+
+    // Calculate the color score based on entered weights
+    const colorScore = calculateColorScore(displayAverageGrade, gradeTable);
+
     // If the average grade row already exists, overwrite it
     if (averageGradeRow) {
-        // Calculate the average grade
-        const averageGrade = calculateAverageGrade(gradeTable);
-
         // Display the average grade
         averageGradeRow.innerHTML = `
             <td></td>
             <td class="font-weight-bold">Ortalama</td>
             <td class="text-right font-weight-bold">
-                <span style="color: ${getColorForGrade(averageGrade)}; font-weight: bold">${averageGrade.toFixed(2)}</span>
+                <span style="color: ${getColorForGrade(colorScore)}; font-weight: bold">${displayAverageGrade.toFixed(2)}</span>
             </td>
         `;
     } else {
-        // Calculate the average grade
-        const averageGrade = calculateAverageGrade(gradeTable);
-
         // Display the average grade
         averageGradeRow = document.createElement('tr');
         averageGradeRow.classList.add('average-grade-row');
@@ -36,7 +36,7 @@ lessonCards.forEach((card) => {
             <td></td>
             <td class="font-weight-bold">Ortalama</td>
             <td class="text-right font-weight-bold">
-                <span style="color: ${getColorForGrade(averageGrade)}; font-weight: bold">${averageGrade.toFixed(2)}</span>
+                <span style="color: ${getColorForGrade(colorScore)}; font-weight: bold">${displayAverageGrade.toFixed(2)}</span>
             </td>
         `;
 
@@ -45,36 +45,53 @@ lessonCards.forEach((card) => {
     }
 });
 
-// Function to calculate the average grade
-function calculateAverageGrade(gradeTable) {
-    // Select all grade rows
+// Function to calculate the displayed average grade based on entered grades
+function calculateDisplayAverageGrade(gradeTable) {
     const gradeRows = gradeTable.querySelectorAll('tbody tr');
-
-    // Variables to hold the total grade amount and the number of grades
     let totalGrade = 0;
+    let totalWeight = 0;
 
-    // Iterate over each grade row
     gradeRows.forEach((row) => {
-        // Find and parse the grade
         const gradeText = row.querySelector('.text-right').textContent.trim();
         const grade = parseFloat(gradeText);
-        
-        // Find and parse the ratio
         const ratioText = row.querySelector('td:first-child').textContent.trim();
         const ratio = parseFloat(ratioText);
 
-        // If the grade is a valid number and is a grade to be included in the average calculation
         if (!isNaN(grade)) {
-            // Calculate the total grade
             totalGrade += (grade * ratio) / 100;
+            totalWeight += ratio;
         }
     });
 
-    // Calculate the average grade
-    return totalGrade;
+    return totalWeight > 0 ? totalGrade : 0; // Avoid division by zero
 }
 
-// Function to determine color based on grade
-function getColorForGrade(grade) {
-    return grade >= 70 ? 'green' : (grade >= 50 ? 'blue' : 'red');
+// Function to calculate the color score based on the formula
+function calculateColorScore(calculatedGrade, gradeTable) {
+    const gradeRows = gradeTable.querySelectorAll('tbody tr');
+    let totalWeight = 0;
+
+    gradeRows.forEach((row) => {
+        const gradeText = row.querySelector('.text-right').textContent.trim();
+        const ratioText = row.querySelector('td:first-child').textContent.trim();
+        const ratio = parseFloat(ratioText);
+
+        if (!isNaN(parseFloat(gradeText))) {
+            totalWeight += ratio;
+        }
+    });
+
+    // Apply the color score formula
+    return totalWeight > 0 ? (calculatedGrade * 100) / totalWeight : 0;
+}
+
+// Function to determine color based on the color score
+function getColorForGrade(colorScore) {
+    if (colorScore > 75) {
+        return 'green'; // High score range
+    } else if (colorScore >= 55) {
+        return 'blue'; // Medium-high score range
+    } else {
+        return 'red'; // Low score range
+    }
 }
