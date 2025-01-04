@@ -43,6 +43,15 @@ lessonCards.forEach((card) => {
         // Append the average grade row to the table
         gradeTable.querySelector('tbody').appendChild(averageGradeRow);
     }
+
+    // Add the inspirational quote below the average grade row with bold and italic font
+    const quoteRow = document.createElement('tr');
+    quoteRow.innerHTML = `
+        <td colspan="3" class="text-center font-weight-bold" style="font-style: italic; color: gray;">
+       
+        </td>
+    `;
+    gradeTable.querySelector('tbody').appendChild(quoteRow);
 });
 
 // Function to calculate the displayed average grade based on entered grades
