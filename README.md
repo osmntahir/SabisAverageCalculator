@@ -1,25 +1,78 @@
-# SABIS GPA CALCULATOR
+# SABİS GPA HESAPLAYICI
 
-## Installation
+## Kurulum
 
-To install the extension, follow these steps:
+Bu uzantıyı tarayıcınıza yüklemek için aşağıdaki adımları izleyin:
 
-1. **Download the Folder:** First, download the folder containing the extension files to your computer.
+1. **Klasörü İndirin:** İlk olarak, uzantı dosyalarını içeren klasörü bilgisayarınıza indirin.
 
-2. **Enable Developer Mode in Browser Settings:** Open your web browser and navigate to the settings menu. Look for the "Extensions" or "Add-ons" section. Within that section, find the option labeled "Developer mode" and toggle it on to enable.
+2. **Geliştirici Modunu Etkinleştirin:** Tarayıcınızın ayarlarına gidin ve "Uzantılar" veya "Eklentiler" kısmını bulun. Bu bölümde, "Geliştirici modu" seçeneğini bulun ve aktif hale getirin.
 
-3. **Load Unpacked:** After enabling developer mode, locate the downloaded folder on your computer. Then, go back to the browser's extensions or add-ons settings. You should now see additional options appear. Click on "Load unpacked" or similar, depending on your browser.
+3. **Paketlenmemiş Uzantıyı Yükle:** Geliştirici modunu etkinleştirdikten sonra, bilgisayarınıza indirdiğiniz klasörü bulun. Ardından, tarayıcınızın uzantılar bölümüne geri dönün. "Paketlenmemiş uzantıyı yükle" (veya benzer bir seçenek) butonuna tıklayın.
 
-4. **Select the Folder:** A file dialog will open. Navigate to the downloaded folder containing the extension files, and select it. Make sure to choose the main folder, not individual files within it.
+4. **Klasörü Seçin:** Bir dosya seçme penceresi açılacaktır. İndirdiğiniz uzantı dosyalarının bulunduğu klasörü seçin. Ana klasörü seçtiğinizden emin olun, içindeki dosyaları değil.
 
-5. **Install the Extension:** Once you've selected the folder, click "Open" or "Select" to install the extension. The browser will now load the extension from the selected folder, and it should be installed and ready to use.
+5. **Uzantıyı Yükleyin:** Klasörü seçtikten sonra, "Aç" veya "Seç" butonuna tıklayın. Tarayıcı, klasördeki uzantı dosyalarını yükleyecek ve uzantıyı kuracaktır.
+
+---
+
+## Özellikler
+
+### 1. **Girilmeyen Notlar Yerine TextBox Eklendi**
+- Girilmeyen notlar yerine istediğiniz notları girerek simüle edebilirsiniz.
+
+### 2. **Giriş Kısıtlamaları**
+- Not giriş kutularına yalnızca 0-100 arasında sayısal değerler girilebilir.
+- Harf veya sembol gibi geçersiz karakter girişleri engellenir.
+- Kullanıcı, 0'dan küçük veya 100'den büyük bir değer girmeye çalışırsa, bu girişe izin verilmez (uyarı gösterilmeden engellenir).
+
+### 3. **Dinamik Ortalama Hesaplama**
+- Kullanıcı her not girdiğinde, ortalama otomatik olarak yeniden hesaplanır ve güncellenir.
+- Ortalama, belirli aralıklara göre renklendirilir:
+  - **Yeşil:** Yüksek (75 üzeri)
+  - **Mavi:** Orta (55-75 arası)
+  - **Kırmızı:** Düşük (55 altı)
+
+### 4. **Gelişmiş Tasarım**
+- Uzantının aç/kapa (toggle) butonu yenilendi. Artık daha modern ve estetik bir görünüme sahip.
+- Arayüz, kullanıcı dostu ve tarayıcı içi tasarıma uyumlu hale getirildi.
+
+### 5. **Aç/Kapa Özelliği**
+- Uzantıyı açmak veya kapatmak için bir toggle (anahtar) düğmesi eklenmiştir.
+- Düğme değiştirilince tarayıcı sekmesi otomatik olarak yenilenir ve uzantı aktif/pasif hale gelir.
+
+---
+
+## Kullanım Öncesi ve Sonrası Örneği
+
+<div style="display: flex; gap: 20px;">
+  <div>
+    <h4>Kullanım Öncesi</h4>
+    <img src="https://github.com/user-attachments/assets/d8ddb88d-3b11-4a87-8ee6-a0a792ab3329" alt="Kullanım Öncesi" style="max-width: 300px;">
+  </div>
+  <div>
+    <h4>Kullanım Sonrası</h4>
+    <img src="https://github.com/user-attachments/assets/43abd062-98d0-4ef8-b0fa-1fa26188a20c" alt="Kullanım Sonrası" style="max-width: 300px;">
+  </div>
+</div>
 
 
-## Example
 
-![Before](before.png)
+---
 
-![After](after.png)
+## Destek Olmak İsterseniz
+
+Bu projeyi daha fazla geliştirmek için desteğinize ihtiyacımız var. Eğer katkıda bulunmak isterseniz:
+- **Fork** yaparak projeye katkıda bulunabilirsiniz.
+- Öneri ve geliştirme fikirlerinizi bizimle paylaşabilirsiniz.
+
+Her türlü geri bildirim bizim için çok değerli! 
+
+---
+
+## İletişim
+
+- **E-posta:** ozdemirosmantahir@gmail.com
 
 
-
+Teşekkürler! 🚀
