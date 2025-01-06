@@ -3,24 +3,34 @@ const lessonCards = document.querySelectorAll('.card-custom.card-stretch');
 
 // Perform operations for each lesson card
 lessonCards.forEach((card) => {
-    // Find the success grade
-    const successGradeCell = card.querySelector('.font-weight-bold');
-
     // Select the table containing the grades
     const gradeTable = card.querySelector('table');
 
-    // Check for the average grade row
-    let averageGradeRow = gradeTable.querySelector('.average-grade-row');
+    // Add input fields for empty grade cells
+    const gradeRows = gradeTable.querySelectorAll('tbody tr');
+    gradeRows.forEach((row) => {
+        const gradeCell = row.querySelector('.text-right');
+        if (!gradeCell.textContent.trim()) {
+            gradeCell.innerHTML = `
+                <input type="number" class="grade-input" placeholder="Not Gir" style="width: 60px; text-align: right;">
+            `;
+        }
+    });
 
-    // Calculate the average grade for display
-    const displayAverageGrade = calculateDisplayAverageGrade(gradeTable);
+    // Function to update average grade dynamically
+    const updateAverageGrade = () => {
+        const displayAverageGrade = calculateDisplayAverageGrade(gradeTable);
+        const colorScore = calculateColorScore(displayAverageGrade, gradeTable);
 
-    // Calculate the color score based on entered weights
-    const colorScore = calculateColorScore(displayAverageGrade, gradeTable);
+        // Check if the average grade row exists
+        let averageGradeRow = gradeTable.querySelector('.average-grade-row');
+        if (!averageGradeRow) {
+            averageGradeRow = document.createElement('tr');
+            averageGradeRow.classList.add('average-grade-row');
+            gradeTable.querySelector('tbody').appendChild(averageGradeRow);
+        }
 
-    // If the average grade row already exists, overwrite it
-    if (averageGradeRow) {
-        // Display the average grade
+        // Update the average grade row
         averageGradeRow.innerHTML = `
             <td></td>
             <td class="font-weight-bold">Ortalama</td>
@@ -28,30 +38,18 @@ lessonCards.forEach((card) => {
                 <span style="color: ${getColorForGrade(colorScore)}; font-weight: bold">${displayAverageGrade.toFixed(2)}</span>
             </td>
         `;
-    } else {
-        // Display the average grade
-        averageGradeRow = document.createElement('tr');
-        averageGradeRow.classList.add('average-grade-row');
-        averageGradeRow.innerHTML = `
-            <td></td>
-            <td class="font-weight-bold">Ortalama</td>
-            <td class="text-right font-weight-bold">
-                <span style="color: ${getColorForGrade(colorScore)}; font-weight: bold">${displayAverageGrade.toFixed(2)}</span>
-            </td>
-        `;
+    };
 
-        // Append the average grade row to the table
-        gradeTable.querySelector('tbody').appendChild(averageGradeRow);
-    }
+    // Add event listener to recalculate grades when input values change
+    const gradeInputs = gradeTable.querySelectorAll('.grade-input');
+    gradeInputs.forEach((input) => {
+        input.addEventListener('input', () => {
+            updateAverageGrade();
+        });
+    });
 
-    // Add the inspirational quote below the average grade row with bold and italic font
-    const quoteRow = document.createElement('tr');
-    quoteRow.innerHTML = `
-        <td colspan="3" class="text-center font-weight-bold" style="font-style: italic; color: gray;">
-       
-        </td>
-    `;
-    gradeTable.querySelector('tbody').appendChild(quoteRow);
+    // Initial calculation
+    updateAverageGrade();
 });
 
 // Function to calculate the displayed average grade based on entered grades
@@ -61,12 +59,14 @@ function calculateDisplayAverageGrade(gradeTable) {
     let totalWeight = 0;
 
     gradeRows.forEach((row) => {
-        const gradeText = row.querySelector('.text-right').textContent.trim();
+        const gradeCell = row.querySelector('.text-right');
+        const gradeInput = gradeCell.querySelector('.grade-input');
+        const gradeText = gradeInput ? gradeInput.value.trim() : gradeCell.textContent.trim();
         const grade = parseFloat(gradeText);
         const ratioText = row.querySelector('td:first-child').textContent.trim();
         const ratio = parseFloat(ratioText);
 
-        if (!isNaN(grade)) {
+        if (!isNaN(grade) && !isNaN(ratio)) {
             totalGrade += (grade * ratio) / 100;
             totalWeight += ratio;
         }
@@ -81,11 +81,13 @@ function calculateColorScore(calculatedGrade, gradeTable) {
     let totalWeight = 0;
 
     gradeRows.forEach((row) => {
-        const gradeText = row.querySelector('.text-right').textContent.trim();
+        const gradeCell = row.querySelector('.text-right');
+        const gradeInput = gradeCell.querySelector('.grade-input');
+        const gradeText = gradeInput ? gradeInput.value.trim() : gradeCell.textContent.trim();
         const ratioText = row.querySelector('td:first-child').textContent.trim();
         const ratio = parseFloat(ratioText);
 
-        if (!isNaN(parseFloat(gradeText))) {
+        if (!isNaN(parseFloat(gradeText)) && !isNaN(ratio)) {
             totalWeight += ratio;
         }
     });
