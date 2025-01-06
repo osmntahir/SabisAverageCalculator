@@ -4,7 +4,9 @@
     "version": "1.0",
     "description": "This extension calculates the average grades of the course notes on web pages.",
     "permissions": [
-      "activeTab"
+      "activeTab",
+      "storage",
+      "scripting"
     ],
     "background": {
       "service_worker": "background.js"
@@ -15,7 +17,7 @@
     "content_scripts": [
       {
         "matches": ["https://obs.sabis.sakarya.edu.tr/*"],
-        "js": ["background.js"]
+        "js": ["content.js"]
       }
     ]
   }
