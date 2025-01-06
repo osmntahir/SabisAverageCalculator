@@ -28,7 +28,6 @@ chrome.storage.local.get('extensionEnabled', function (data) {
             <input 
               type="number" 
               class="grade-input"
-              placeholder="Not Gir"
               style="
                 width: 60px; 
                 text-align: right;
