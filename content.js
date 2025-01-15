@@ -28,17 +28,53 @@ chrome.storage.local.get('extensionEnabled', function (data) {
             type="number" 
             class="grade-input"
             style="
-              width: 60px; 
+              width: 60px;
+              height: 28px;
               text-align: right;
-              border: 1px solid #ccc; 
-              border-radius: 4px;
-              padding: 2px 4px;
-              font-size: 14px;
-              -webkit-appearance: none; /* Okları kaldır */
-              -moz-appearance: textfield; /* Okları kaldır */
+              border: 1.5px solid #e4e6ef;
+              border-radius: 6px;
+              padding: 4px 8px;
+              font-size: 13px;
+              color: #3F4254;
+              background-color: #ffffff;
+              transition: all 0.2s ease;
+              -moz-appearance: textfield;
+              outline: none;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             "
           >
         `;
+
+        // Input elementini seç ve hover/focus stillerini ekle
+        const input = gradeCell.querySelector('.grade-input');
+        input.style.cssText += `
+          -webkit-appearance: textfield;
+          margin: 0;
+        `;
+
+        // Hover ve focus efektleri için stil ekle
+        const style = document.createElement('style');
+        style.textContent = `
+          .grade-input::-webkit-inner-spin-button,
+          .grade-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+          
+          .grade-input:hover {
+            border-color: #b5b5c3;
+            box-shadow: 0 3px 6px rgba(54, 153, 255, 0.1);
+            transform: translateY(-1px);
+          }
+          
+          .grade-input:focus {
+            border-color: #3699ff;
+            border-width: 2px;
+            box-shadow: 0 4px 8px rgba(54, 153, 255, 0.15);
+            transform: translateY(-1px);
+          }
+        `;
+        document.head.appendChild(style);
       }
     });
 
