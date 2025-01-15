@@ -134,18 +134,46 @@ chrome.storage.local.get('extensionEnabled', function (data) {
     updateAverageGrade();
   });
 
-  // Ortalama hesaplayan fonksiyon
+  /**
+   * NOT: Bu fonksiyon "Bütünleme" satırı varsa Final'i hesaba katmıyor.
+   *      Eğer Bütünleme satırı yoksa eski usül Final devreye giriyor.
+   */
   function calculateDisplayAverageGrade(gradeTable) {
     const gradeRows = gradeTable.querySelectorAll('tbody tr');
+
+    // 1) Tabloda Bütünleme satırı var mı kontrol edelim
+    let hasButunleme = false;
+    gradeRows.forEach((row) => {
+      const calismaTipiCell = row.querySelector('td:nth-child(2)');
+      if (!calismaTipiCell) return;
+      // Küçük-büyük harf farkını kapatmak için toLowerCase kullandık
+      if (calismaTipiCell.textContent.trim().toLowerCase() === 'bütünleme') {
+        hasButunleme = true;
+      }
+    });
+
     let totalGrade = 0;
     let totalWeight = 0;
 
     gradeRows.forEach((row) => {
+      const calismaTipiCell = row.querySelector('td:nth-child(2)');
+      if (!calismaTipiCell) return;
+
+      const calismaTipi = calismaTipiCell.textContent.trim().toLowerCase();
+      
+      // Bütünleme varsa "final" satırını atla
+      if (hasButunleme && calismaTipi.includes('final')) {
+        return;
+      }
+
+      const ratioText = row.querySelector('td:first-child').textContent.trim();
+      const ratioValue = parseFloat(ratioText.replace(',', '.'));
+
+      // Notu input’tan veya hücredeki metinden al
       const gradeCell = row.querySelector('.text-right');
       if (!gradeCell) return;
       const gradeInput = gradeCell.querySelector('.grade-input');
 
-      // Kullanıcı input'u veya hücredeki metin (virgülü '.' yapıyoruz)
       let gradeText = gradeInput
         ? gradeInput.value.trim()
         : gradeCell.textContent.trim();
@@ -153,12 +181,8 @@ chrome.storage.local.get('extensionEnabled', function (data) {
 
       const grade = parseFloat(gradeText);
 
-      // İlk sütunda yazan oran (virgülü '.' yap)
-      const ratioText = row.querySelector('td:first-child').textContent.trim();
-      const ratioValue = parseFloat(ratioText.replace(',', '.'));
-
+      // Geçerli not + oran varsa hesapla
       if (!isNaN(grade) && !isNaN(ratioValue)) {
-        // (grade * ratio) / 100
         totalGrade += (grade * ratioValue) / 100;
         totalWeight += ratioValue;
       }
@@ -168,12 +192,32 @@ chrome.storage.local.get('extensionEnabled', function (data) {
     return totalWeight > 0 ? totalGrade : 0;
   }
 
-  // Renge esas olacak skoru hesaplayan fonksiyon
   function calculateColorScore(calculatedGrade, gradeTable) {
     const gradeRows = gradeTable.querySelectorAll('tbody tr');
-    let totalWeight = 0;
 
+    // Aynı şekilde Bütünleme kontrolü yapalım
+    let hasButunleme = false;
     gradeRows.forEach((row) => {
+      const calismaTipiCell = row.querySelector('td:nth-child(2)');
+      if (!calismaTipiCell) return;
+      if (calismaTipiCell.textContent.trim().toLowerCase() === 'bütünleme') {
+        hasButunleme = true;
+      }
+    });
+
+    let totalWeight = 0;
+    gradeRows.forEach((row) => {
+      const calismaTipiCell = row.querySelector('td:nth-child(2)');
+      if (!calismaTipiCell) return;
+
+      const calismaTipi = calismaTipiCell.textContent.trim().toLowerCase();
+      if (hasButunleme && calismaTipi.includes('final')) {
+        return;
+      }
+
+      const ratioText = row.querySelector('td:first-child').textContent.trim();
+      const ratio = parseFloat(ratioText.replace(',', '.'));
+
       const gradeCell = row.querySelector('.text-right');
       if (!gradeCell) return;
       const gradeInput = gradeCell.querySelector('.grade-input');
@@ -182,10 +226,6 @@ chrome.storage.local.get('extensionEnabled', function (data) {
         : gradeCell.textContent.trim();
       gradeText = gradeText.replace(',', '.');
 
-      const ratioText = row.querySelector('td:first-child').textContent.trim();
-      const ratio = parseFloat(ratioText.replace(',', '.'));
-
-      // Not ve oran girilmişse
       if (!isNaN(parseFloat(gradeText)) && !isNaN(ratio)) {
         totalWeight += ratio;
       }
