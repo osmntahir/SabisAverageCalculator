@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Average Grade Calculator",
+    "name": "Sabis Not Hesaplayıcı",
     "version": "1.0",
     "description": "This extension calculates the average grades of the course notes on web pages.",
     "permissions": [
