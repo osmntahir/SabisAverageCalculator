@@ -1,24 +1,31 @@
 {
-    "manifest_version": 3,
-    "name": "Sabis Not Hesaplayıcı",
-    "version": "1.0",
-    "description": "This extension calculates the average grades of the course notes on web pages.",
-    "permissions": [
-      "activeTab",
-      "storage",
-      "scripting"
-    ],
-    "background": {
-      "service_worker": "background.js"
+  "manifest_version": 3,
+  "name": "SABİS Not Yardımcısı",
+  "version": "1.3.0",
+  "description": "Ders ve Transkript sayfalarında dinamik not / AKTS hesaplamaları.",
+  "icons": {
+    "16":  "assets/icons/icon16.png",
+    "48":  "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["https://obs.sabis.sakarya.edu.tr/*"],
+
+  "background": { "service_worker": "src/content/background.js" },
+
+  "action": { "default_popup": "src/popup/popup.html" },
+
+  "content_scripts": [
+    {
+      "matches": ["https://obs.sabis.sakarya.edu.tr/Ders*"],
+      "js": ["src/content/content.js"],
+      "run_at": "document_idle"
     },
-    "action": {
-      "default_popup": "popup.html"
-    },
-    "content_scripts": [
-      {
-        "matches": ["https://obs.sabis.sakarya.edu.tr/*"],
-        "js": ["content.js"]
-      }
-    ]
-  }
-  
+    {
+      "matches": ["https://obs.sabis.sakarya.edu.tr/Transkript*"],
+      "js": ["src/content/transkript.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

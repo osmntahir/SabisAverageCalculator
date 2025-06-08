@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SABİS Not Yardımcısı</title>
+
+  <style>
+    :root{
+      --radius:12px;
+      --clr-light:#ffffff;
+      --clr-dark:#2b2b2b;
+      --clr-text-light:#222;
+      --clr-text-dark:#f1f1f1;
+      --clr-accent:#1E88E5;
+    }
+    html{background:transparent;}
+    body{
+      margin:0;padding:16px 16px 18px;width:260px;height:160px;
+      border-radius:var(--radius);overflow:hidden;
+      box-shadow:0 4px 12px rgba(0,0,0,.18);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+      display:flex;flex-direction:column;gap:16px;box-sizing:border-box;
+    }
+    @media (prefers-color-scheme:dark){
+      body{background:var(--clr-dark);color:var(--clr-text-dark);}
+    }
+    @media (prefers-color-scheme:light){
+      body{background:var(--clr-light);color:var(--clr-text-light);}
+    }
+    .title{font-size:1rem;font-weight:600;display:flex;align-items:center;gap:8px;margin:0;}
+    .title img{width:20px;height:20px}
+    .row{display:flex;align-items:center;justify-content:space-between;}
+    .toggle{position:relative;width:44px;height:24px}
+    .toggle input{opacity:0;width:0;height:0}
+    .slider{position:absolute;inset:0;border-radius:24px;background:#a5a5a5;transition:.25s;}
+    .slider::before{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;
+                    border-radius:50%;background:#fff;transition:.25s;}
+    input:checked+.slider{background:var(--clr-accent);}
+    input:checked+.slider::before{transform:translateX(20px);}
+    .status{font-size:.92rem;font-weight:500;}
+    .footer{margin-top:auto;text-align:right;font-size:.8rem;opacity:.6;}
+  </style>
+</head>
+
+<body>
+  <h1 class="title">
+    <!-- ‼️ ikon yolu yeni yapıya göre güncellendi -->
+    <img src="/assets/icons/icon48.png" alt="icon" />
+    SABİS Not Yardımcısı
+  </h1>
+
+  <div class="row">
+    <span id="status" class="status">Yükleniyor…</span>
+    <label class="toggle">
+      <input type="checkbox" id="extToggle" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="footer">v1.3.0</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
