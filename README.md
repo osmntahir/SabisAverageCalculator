@@ -60,8 +60,8 @@ SABIS-Note-Assistant/
 ├─ src/                        # kaynak kodlar
 │   ├─ content/
 │   │   └─ content.js          # /Ders sayfası
-        └─ transkript.js       # /Transkript sayfası
-        └─ background.js       # service-worker
+│   │   └─ transkript.js       # /Transkript sayfası
+│   │   └─ background.js       # service-worker
 │   └─ popup/
 │       ├─ popup.html
 │       ├─ popup.js
