@@ -40,36 +40,6 @@ Sakarya Üniversitesi öğrencileri için geliştirilmiş bu Chrome / Edge uzant
 
 ---
 
-## Klasör Yapısı
-
-SABIS-Note-Assistant/
-├─ manifest.json               # uzantı bildirimi  (kökte)            
-├─ README.md
-│
-├─ assets/
-│   ├─ icons/                  # uzantı ikonları
-│   │   ├─ icon16.png
-│   │   ├─ icon48.png
-│   │   └─ icon128.png
-│   └─ images/                 # ekran görüntüleri
-│       ├─ before1.png
-│       ├─ after1.png
-│       ├─ before2.png
-│       └─ after2.png
-│
-├─ src/                        # kaynak kodlar
-│   ├─ content/
-│   │   └─ content.js          # /Ders sayfası
-│   │   └─ transkript.js       # /Transkript sayfası
-│   │   └─ background.js       # service-worker
-│   └─ popup/
-│       ├─ popup.html
-│       ├─ popup.js
-│
-├─ AverageCalculator.crx
-└─ AverageCalculator.pem
-
-
 ## Katkı & Destek
 
 * ⭐ Projeyi beğendiyseniz **Star** verin  
