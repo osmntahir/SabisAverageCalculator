@@ -1,78 +1,42 @@
-# SABİS GPA HESAPLAYICI
+# SABİS GPA Hesaplayıcı (Smart Grade Assistant) 🚀
 
-## Kurulum
+Sakarya Üniversitesi öğrencileri için geliştirilmiş bu Chrome/Edge
+uzantısı, **SABİS** “Ders” ve “Transkript” sayfalarında;
 
-Bu uzantıyı tarayıcınıza yüklemek için aşağıdaki adımları izleyin:
+* **Eksik notları girerek** “ne olurdu?” senaryoları oluşturmanıza  
+* **AKTS kredilerini düzenleyip** gerçekçi dönem–genel GPA simülasyonları yapmanıza  
+* Tüm bunları **renkli, anlık geri bildirimle** takip etmenize olanak tanır.
 
-1. **Klasörü İndirin:** İlk olarak, uzantı dosyalarını içeren klasörü bilgisayarınıza indirin.
+---
 
-2. **Geliştirici Modunu Etkinleştirin:** Tarayıcınızın ayarlarına gidin ve "Uzantılar" veya "Eklentiler" kısmını bulun. Bu bölümde, "Geliştirici modu" seçeneğini bulun ve aktif hale getirin.
+## Kurulum (Geliştirici Mod)
 
-3. **Paketlenmemiş Uzantıyı Yükle:** Geliştirici modunu etkinleştirdikten sonra, bilgisayarınıza indirdiğiniz klasörü bulun. Ardından, tarayıcınızın uzantılar bölümüne geri dönün. "Paketlenmemiş uzantıyı yükle" (veya benzer bir seçenek) butonuna tıklayın.
-
-4. **Klasörü Seçin:** Bir dosya seçme penceresi açılacaktır. İndirdiğiniz uzantı dosyalarının bulunduğu klasörü seçin. Ana klasörü seçtiğinizden emin olun, içindeki dosyaları değil.
-
-5. **Uzantıyı Yükleyin:** Klasörü seçtikten sonra, "Aç" veya "Seç" butonuna tıklayın. Tarayıcı, klasördeki uzantı dosyalarını yükleyecek ve uzantıyı kuracaktır.
+1. Depoyu ZIP olarak indirin veya `git clone` yapın.  
+2. Tarayıcıda `chrome://extensions` → **Geliştirici modu**nu açın.  
+3. **“Paketlenmemiş uzantı yükle”** → proje kök klasörünü seçin (içinde `manifest.json` var).  
+4. Mavi uzantı simgesi göründüğünde kurulum tamamdır.
 
 ---
 
 ## Özellikler
 
-### 1. **Girilmeyen Notlar Yerine TextBox Eklendi**
-- Girilmeyen notlar yerine istediğiniz notları girerek simüle edebilirsiniz.
-
-### 2. **Giriş Kısıtlamaları**
-- Not giriş kutularına yalnızca 0-100 arasında sayısal değerler girilebilir.
-- Harf veya sembol gibi geçersiz karakter girişleri engellenir.
-- Kullanıcı, 0'dan küçük veya 100'den büyük bir değer girmeye çalışırsa, bu girişe izin verilmez (uyarı gösterilmeden engellenir).
-
-### 3. **Dinamik Ortalama Hesaplama**
-- Kullanıcı her not girdiğinde, ortalama otomatik olarak yeniden hesaplanır ve güncellenir.
-- Ortalama, belirli aralıklara göre renklendirilir:
-  - **Yeşil:** Yüksek (75 üzeri)
-  - **Mavi:** Orta (55-75 arası)
-  - **Kırmızı:** Düşük (55 altı)
-
-### 4. **Gelişmiş Tasarım**
-- Uzantının aç/kapa (toggle) butonu yenilendi. Artık daha modern ve estetik bir görünüme sahip.
-- Arayüz, kullanıcı dostu ve tarayıcı içi tasarıma uyumlu hale getirildi.
-
-### 5. **Aç/Kapa Özelliği**
-- Uzantıyı açmak veya kapatmak için bir toggle (anahtar) düğmesi eklenmiştir.
-- Düğme değiştirilince tarayıcı sekmesi otomatik olarak yenilenir ve uzantı aktif/pasif hale gelir.
+| # | Açıklama |
+|---|----------|
+| **1 – Dinamik Not Kutuları** | Notu girilmemiş hücrelerde otomatik **textbox** (0 – 100). |
+| **2 – Giriş Doğrulama** | 0–100 dışı veya harf/özel karakter girişi engellenir. |
+| **3 – Canlı GPA Hesabı** | Her değişiklikte **dönem ve genel** GPA anında güncellenir.<br>• **Yeşil ≥ 75** • **Mavi 55–74** • **Kırmızı &lt; 55** |
+| **4 – AKTS Düzenle Toggle** | Kart başlığındaki **❌ / ✅ AKTS Düzenle** <br>→ AKTS hücrelerinde − / ＋ butonları & doğrudan sayı girişi<br>→ Tek tıkla orijinal değere sıfırla |
+| **5 – “Ortalamaya Girmez”** | Yıldız `*` işaretli dersler (STAJ I, II …) otomatik **hesap dışı** tutulur. |
 
 ---
 
-## Kullanım Öncesi ve Sonrası Örneği
+## Önce / Sonra
 
-<div style="display: flex; gap: 20px;">
-  <div>
-    <h4>Kullanım Öncesi</h4>
-    <img src="https://github.com/user-attachments/assets/d8ddb88d-3b11-4a87-8ee6-a0a792ab3329" alt="Kullanım Öncesi" style="max-width: 300px;">
-  </div>
-  <div>
-    <h4>Kullanım Sonrası</h4>
-    <img src="https://github.com/user-attachments/assets/43abd062-98d0-4ef8-b0fa-1fa26188a20c" alt="Kullanım Sonrası" style="max-width: 300px;">
-  </div>
-</div>
-
-
-
+| Önce | Sonra |
+|:--:|:--:|
+| ![Önce](assets/images/before1.png) | ![Sonra](assets/images/after1.png) |
+| ![Önce](assets/images/before2.png) | ![Sonra](assets/images/after2.png) |
 ---
 
-## Destek Olmak İsterseniz
+## Klasör Yapısı
 
-Bu projeyi daha fazla geliştirmek için desteğinize ihtiyacımız var. Eğer katkıda bulunmak isterseniz:
-- **Fork** yaparak projeye katkıda bulunabilirsiniz.
-- Öneri ve geliştirme fikirlerinizi bizimle paylaşabilirsiniz.
-
-Her türlü geri bildirim bizim için çok değerli! 
-
----
-
-## İletişim
-
-- **E-posta:** ozdemirosmantahir@gmail.com
-
-
-Teşekkürler! 🚀
