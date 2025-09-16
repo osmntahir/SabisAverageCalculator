@@ -1,6 +1,28 @@
-# SABİS GPA HESAPLAYICI
+# 🎓 SABİS NOT HESAPLAYICI
 
-## Kurulum
+> **Modern ve kullanıcı dostu tasarımla Sabis öğrencileri için not ortalaması hesaplama eklentisi**
+
+[![Versiyon](https://img.shields.io/badge/versiyon-1.0-blue.svg)](https://github.com/osmntahir/SabisAverageCalculator)
+[![Lisans](https://img.shields.io/badge/lisans-MIT-green.svg)](LICENSE)
+
+## ✨ Yeni Özellikler (v1.0)
+
+### 🎨 **Yenilenmiş Modern Tasarım**
+- **Gradient arka plan** ve **glassmorphism** efektleri
+- **FontAwesome iconları** ile zenginleştirilmiş arayüz  
+- **Responsive tasarım** ve **smooth animasyonlar**
+- **Modern toggle switch** ve **renkli feedback** sistemi
+
+### 🖼️ **Profesyonel Icon Seti**
+- 4 farklı boyutta (16px, 32px, 48px, 128px) **özel tasarım iconlar**
+- **Gradient renkler** ve **hesap makinesi** temalı görsel
+- Chrome mağazası için **profesyonel görünüm**
+
+### ☕ **Geliştirici Desteği** *(Yakında)*
+- **Buy Me Coffee** entegrasyonu hazır (şu anda yorum satırında)
+- Kolay aktivasyon için hazır kod yapısı
+
+## 🚀 Kurulum
 
 Bu uzantıyı tarayıcınıza yüklemek için aşağıdaki adımları izleyin:
 
@@ -74,5 +96,16 @@ Her türlü geri bildirim bizim için çok değerli!
 
 - **E-posta:** ozdemirosmantahir@gmail.com
 
+
+---
+
+## Güvenlik Notu (Önemli)
+
+Proje kök dizininde gizli anahtar dosyası (*.pem) bulunmamalıdır. Eğer daha önce paketleme için bir `.pem` dosyası kullanıldıysa, bu dosya proje kökünden taşındı.
+
+- Taşınan anahtar konumu: `~/.extension_keys/AverageCalculator.pem`
+- Mağazaya paketleme yaparken bu anahtarı kullanmak isterseniz, geçici olarak kopyalayın veya paketleme adımında ilgili yolu gösterin.
+
+Bu repository artık `.pem` dosyalarını `.git` tarafından takip etmeyecek şekilde yapılandırılmıştır (`.gitignore` eklenmiştir).
 
 Teşekkürler! 🚀
