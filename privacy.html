@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gizlilik Politikası — Sabis Not Hesaplayıcı</title>
+  <title>Privacy Policy — Sabis Not Hesaplayıcı</title>
   <style>
     body { font-family: Inter, "Segoe UI", Tahoma, Arial, sans-serif; background: #f7f8fb; color: #222; padding: 32px; }
     .container { max-width: 820px; margin: 0 auto; background: #fff; padding: 28px; border-radius: 10px; box-shadow: 0 8px 30px rgba(20,20,50,0.06); }
@@ -17,70 +17,69 @@
 </head>
 <body>
   <div class="container">
-    <h1>Gizlilik Politikası</h1>
-    <p>Bu sayfa <strong>Sabis Not Hesaplayıcı</strong> Chrome uzantısının gizlilik uygulamalarını açıklar. Uzantının amacı, kullanıcıların Sabis OBS sayfalarındaki not tabloları üzerinde yerel olarak not ortalaması hesaplaması sağlamaktır. Aşağıda hangi verilerin işlendiği, hangi izinlerin neden gerektiği ve kullanıcı kontrol seçenekleri detaylandırılmıştır.</p>
+    <h1>Privacy Policy</h1>
+    <p>This page describes the privacy practices of the <strong>Sabis Not Hesaplayıcı</strong> Chrome extension. The purpose of the extension is to let users locally calculate grade averages on grade tables within Sabis OBS pages. Below you will find which data is processed, why the requested permissions are needed, and what user control options exist.</p>
 
-    <h2>Kısa Özet</h2>
-    <p>Uzantı <strong>kişisel veri toplamaz</strong> ve hiçbir veriyi harici sunuculara göndermez. Tüm hesaplamalar ve veriler kullanıcının tarayıcısında, sadece ziyaret edilen Sabis sayfaları üzerinde yerel olarak işlenir. Uzantı yalnızca bir boolean ayarı (`extensionEnabled`) <code>chrome.storage.local</code> içinde saklar.</p>
+    <h2>Quick Summary</h2>
+    <p>The extension <strong>does not collect personal data</strong> and sends no data to external servers. All calculations and data processing occur locally in the user's browser only on the visited Sabis pages. The extension stores only a single boolean setting (`extensionEnabled`) inside <code>chrome.storage.local</code>.</p>
 
-    <h2>Hangi veriler işlenir?</h2>
+    <h2>What data is processed?</h2>
     <ul>
-      <li><strong>Sayfa DOM verisi:</strong> Uzantı, yalnızca kullanıcının açık olan Sabis OBS sayfasındaki not tablolarını okuyarak hesaplama yapar. Bu okuma tarayıcı içindeki DOM üzerinden gerçekleşir; veriler uzantı tarafından hiçbir yere gönderilmez.</li>
-      <li><strong>Yerel ayar:</strong> Uzantı açık/kapalı durumunu saklamak için <code>chrome.storage.local</code> içine tek bir boolean değer yazar. Bu değer kişisel veri olarak değerlendirilmez.</li>
-      <li><strong>Kullanıcı girdileri:</strong> Kullanıcı, bazı boş not hücrelerine manuel not girebilir; bu girişler yalnızca ilgili sayfa üzerinde hesaplama amaçlı kullanılır ve sunucuya aktarılmaz.</li>
+      <li><strong>Page DOM data:</strong> The extension reads only the grade tables on the currently open Sabis OBS page to perform calculations. This reading occurs via the DOM within the browser; the data is not transmitted anywhere by the extension.</li>
+      <li><strong>Local setting:</strong> A single boolean value is written to <code>chrome.storage.local</code> to store the on/off status of the extension. This value is not considered personal data.</li>
+      <li><strong>User inputs:</strong> The user may manually enter grades into some empty grade cells; these inputs are used only on that page for calculation and are not sent to a server.</li>
     </ul>
 
-    <h2>Neden izin isteniyor?</h2>
+    <h2>Why are permissions requested?</h2>
     <ul>
-      <li><strong>activeTab:</strong> Kullanıcının popup'ta etkileşimi sonucu aktif sekmeye erişmek ve gerektiğinde sekmeyi yenileyerek uzantı durumunu uygulamak için gereklidir. Bu erişim yalnızca kullanıcının doğrudan eylemiyle gerçekleşir.</li>
-      <li><strong>Host izni (https://obs.sabis.sakarya.edu.tr/*):</strong> Uzantı yalnızca Sabis OBS sayfalarında çalışır. Bu ana makine izni, DOM içindeki not tablolarını bulup yerel hesaplama yapmak için gereklidir. Uzantı diğer sitelere erişmez.</li>
-      <li><strong>scripting:</strong> Sayfaya input alanları veya stil eklemek gibi küçük DOM değişiklikleri yapmak amacıyla kullanılır. Bu değişiklikler kullanıcının ziyaret ettiği sayfayla sınırlıdır ve kullanıcı tarafından tetiklenir veya uzantı etkinse otomatik olarak uygulanır.</li>
-      <li><strong>storage:</strong> Uzantının açık/kapalı durumunu saklamak için gereklidir (sadece bir boolean).</li>
+      <li><strong>activeTab:</strong> Needed to access the active tab after user interaction in the popup and, if required, to refresh the tab to apply the extension state. This access occurs only through direct user action.</li>
+      <li><strong>Host permission (https://obs.sabis.sakarya.edu.tr/*):</strong> The extension runs only on Sabis OBS pages. This host permission is required to locate grade tables in the DOM and perform local calculations. The extension does not access other sites.</li>
+      <li><strong>scripting:</strong> Used to make small DOM changes such as adding input fields or styles. These changes are limited to the page the user is visiting and are triggered by the user or automatically if the extension is enabled.</li>
+      <li><strong>storage:</strong> Required to store the on/off state of the extension (only one boolean).</li>
     </ul>
 
     <div class="note">
-      <strong>Not:</strong> Bu uzantı herhangi bir uzak JavaScript veya WebAssembly (Wasm) çalıştırmaz. Popup görünümünde görsel ikonlar için Font Awesome CSS CDN'i kullanılmış olabilir; bu statik CSS dosyası iş mantığını veya kullanıcı verilerini etkilemez. İstenirse ikonlar paket içine alınarak CDN kullanılmadan çalışacak şekilde güncellenebilir.
+      <strong>Note:</strong> This extension does not execute any remote JavaScript or WebAssembly (Wasm). A Font Awesome CSS CDN may have been used for icons in the popup view; this static CSS file does not affect logic or user data. If desired, the icons can be bundled locally so it works without a CDN.
     </div>
+    <h2>Data sharing and third parties</h2>
+  <p>The extension <strong>does not send</strong> user data to third-party servers. Grades entered by the user, calculated averages, or extension settings (only a boolean) are not collected or shared.</p>
 
-    <h2>Veri paylaşımı ve üçüncü taraflar</h2>
-  <p>Uzantı, kullanıcı verilerini üçüncü taraf sunuculara <strong>göndermez</strong>. Kullanıcı tarafından girilen notlar, hesaplanan ortalamalar veya extension ayarları (sadece bir boolean) toplanmaz veya paylaşılmaz.</p>
+  <h3>Third-party links and static assets</h3>
+  <p>Some visual assets used in the popup (e.g. Font Awesome CSS) may be loaded via a CDN. This CSS file is only for icon display and does not execute logic or transmit user data. The "Buy Me a Coffee" button in the popup directs the user to <a href="https://www.buymeacoffee.com/osmntahir" target="_blank" rel="noopener noreferrer">buymeacoffee.com</a>; this navigation is a deliberate user action and the extension does not automatically share data.
 
-  <h3>Üçüncü taraf bağlantıları ve statik kaynaklar</h3>
-  <p>Popup görünümünde kullanılan bazı görsel kaynaklar (ör. Font Awesome CSS) bir CDN üzerinden yükleniyor olabilir. Bu CSS dosyası yalnızca ikon gösterimi içindir ve uzantının iş mantığını veya kullanıcı verilerini çalıştırmaz ya da göndermez. Ayrıca popup'ta yer alan "Buy Me a Coffee" butonu kullanıcıyı <a href="https://www.buymeacoffee.com/osmntahir" target="_blank" rel="noopener noreferrer">buymeacoffee.com</a> adresine yönlendirir; bu yönlendirme kullanıcının açıkça tıkladığı bir eylemdir ve uzantı tarafından otomatik veri paylaşımı yapılmaz.
+  <p><strong>Important:</strong> When navigating to external sites, those sites may collect data according to their own privacy practices (e.g. cookies, analytics). The data practices of such external sites are outside the control of this extension.</p>
 
-  <p><strong>Önemli:</strong> Harici sitelere yapılan yönlendirmelerde o siteler kendi gizlilik uygulamalarına göre veri toplayabilir (ör. çerezler, analytics). Bu tür harici sitelerin veri uygulamaları bu uzantının kontrolü dışındadır.</p>
+  <h3>Data sharing with third parties</h3>
+  <p>By default no user data is shared with third parties. The only exception is if the user <em>manually</em> clicks an external link (such as the BuyMe link); in that case the target site is visited and may apply its own data policies.</p>
 
-  <h3>Üçüncü taraflara veri paylaşımı</h3>
-  <p>Varsayılan olarak hiçbir kullanıcı verisi üçüncü taraflara paylaşılmaz. Tek istisna, kullanıcı <em>manually</em> bir dış bağlantıya tıklarsa (örneğin BuyMe bağlantısı); bu durumda o hedef site ziyaret edilir ve kendi veri politikalarını uygulayabilir.</p>
+    <h2>Security</h2>
+    <p>The extension does not store sensitive keys or secrets. Key files such as the .pem used during packaging are not kept in the repository root; the developer stores these keys locally and securely. Source code and package contents are open to inspection.</p>
 
-    <h2>Güvenlik</h2>
-    <p>Uzantı, hassas anahtarlar veya gizli veriler depolamaz. Paketleme sırasında kullanılan .pem gibi anahtar dosyaları repository kökünde tutulmaz; geliştirici bu anahtarları yerel ve güvenli bir konumda saklar. Kaynak kod ve paket içeriği incelemeye açıktır.</p>
-
-    <h2>Veri saklama ve silme</h2>
-    <p>Uzantı yalnızca <code>chrome.storage.local</code> içinde bir boolean ayarı saklar. Bu veri şu durumlarda silinir:
+    <h2>Data retention and deletion</h2>
+    <p>The extension stores only a single boolean setting inside <code>chrome.storage.local</code>. This data is deleted in these situations:
     <ul>
-      <li>Kullanıcı uzantıyı tarayıcıdan kaldırdığında (uninstall), uzantıya ait tüm <code>chrome.storage.local</code> verileri silinir.</li>
-      <li>Kullanıcı manuel olarak uzantı ayarlarını temizlerse veya tarayıcı verilerini temizlerse ilgili veriler kaldırılabilir.</li>
+      <li>When the user uninstalls the extension, all related <code>chrome.storage.local</code> data is removed.</li>
+      <li>If the user manually clears extension settings or clears browser data, the related data may be removed.</li>
     </ul>
-    Eğer özel olarak verilerinizin tamamen silinmesini isterseniz, lütfen <a href="mailto:ozdemirosmantahir@gmail.com">ozdemirosmantahir@gmail.com</a> adresine talep gönderin; talebinizi aldıktan sonra gerekli yönlendirmeyi ve onayı sağlayacağız.</p>
+    If you specifically want your data fully removed, please send a request to <a href="mailto:ozdemirosmantahir@gmail.com">ozdemirosmantahir@gmail.com</a>; after receiving your request we will provide the necessary guidance and confirmation.</p>
 
-    <h2>Analytics ve izleme</h2>
-    <p>Bu uzantı paketinde üçüncü taraf analytics SDK'ları veya telemetri toplama kodları bulunmamaktadır. Geliştirici tarafında otomatik kullanım verisi veya hata raporlama için hiçbir dışsal analytics servisi aktif değildir.</p>
+    <h2>Analytics and tracking</h2>
+    <p>No third-party analytics SDKs or telemetry collection code exist in this extension package. On the developer side no external analytics service is active for automatic usage data or error reporting.</p>
 
-    <h2>Politika değişiklikleri</h2>
-    <p>Bu gizlilik politikası gerektiğinde güncellenebilir. Önemli değişikliklerde bu sayfa güncellenecek ve son güncelleme tarihi yukarıdaki alanda belirtilecektir. Politikada değişiklik yapılması durumunda önemli değişiklikler hakkında sağlanan iletişim adresi üzerinden bilgilendirme yapılacaktır.</p>
+    <h2>Policy changes</h2>
+    <p>This privacy policy may be updated when necessary. For material changes this page will be updated and the last update date will be indicated in the area above. In case of changes, important updates may be communicated through the provided contact address.</p>
 
-    <h2>Kullanıcı Hakları ve Kontroller</h2>
+    <h2>User rights and controls</h2>
     <ul>
-      <li>Kullanıcı istediği zaman popup üzerinden uzantıyı devre dışı bırakabilir (toggle kapatıldığında uzantı sayfa üzerinde işlem yapmaz).</li>
-      <li>Eğer kullanıcı isterse uzantı tamamen tarayıcı uzantıları listesinden kaldırılabilir.</li>
+      <li>The user can disable the extension at any time via the popup (when the toggle is off the extension performs no actions on the page).</li>
+      <li>If desired the user can completely remove the extension from the browser's extensions list.</li>
     </ul>
 
-    <h2>İletişim</h2>
-    <p>Bu gizlilik politikası veya uzantı hakkında sorularınız için: <a href="mailto:ozdemirosmantahir@gmail.com">ozdemirosmantahir@gmail.com</a></p>
+    <h2>Contact</h2>
+    <p>For questions about this privacy policy or the extension: <a href="mailto:ozdemirosmantahir@gmail.com">ozdemirosmantahir@gmail.com</a></p>
 
     <footer>
-      <small>Son güncelleme: 17 Eylül 2025</small>
+      <small>Last updated: 17 September 2025</small>
     </footer>
   </div>
 </body>
