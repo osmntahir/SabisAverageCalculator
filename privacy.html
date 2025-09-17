@@ -43,10 +43,32 @@
     </div>
 
     <h2>Veri paylaşımı ve üçüncü taraflar</h2>
-    <p>Uzantı hiçbir şekilde veriyi üçüncü taraf sunuculara göndermemektedir. Kullanıcı tarafından girilen notlar, hesaplanan ortalamalar veya extension ayarları dışa aktarılmaz, toplanmaz veya paylaşılmaz.</p>
+  <p>Uzantı, kullanıcı verilerini üçüncü taraf sunuculara <strong>göndermez</strong>. Kullanıcı tarafından girilen notlar, hesaplanan ortalamalar veya extension ayarları (sadece bir boolean) toplanmaz veya paylaşılmaz.</p>
+
+  <h3>Üçüncü taraf bağlantıları ve statik kaynaklar</h3>
+  <p>Popup görünümünde kullanılan bazı görsel kaynaklar (ör. Font Awesome CSS) bir CDN üzerinden yükleniyor olabilir. Bu CSS dosyası yalnızca ikon gösterimi içindir ve uzantının iş mantığını veya kullanıcı verilerini çalıştırmaz ya da göndermez. Ayrıca popup'ta yer alan "Buy Me a Coffee" butonu kullanıcıyı <a href="https://www.buymeacoffee.com/osmntahir" target="_blank" rel="noopener noreferrer">buymeacoffee.com</a> adresine yönlendirir; bu yönlendirme kullanıcının açıkça tıkladığı bir eylemdir ve uzantı tarafından otomatik veri paylaşımı yapılmaz.
+
+  <p><strong>Önemli:</strong> Harici sitelere yapılan yönlendirmelerde o siteler kendi gizlilik uygulamalarına göre veri toplayabilir (ör. çerezler, analytics). Bu tür harici sitelerin veri uygulamaları bu uzantının kontrolü dışındadır.</p>
+
+  <h3>Üçüncü taraflara veri paylaşımı</h3>
+  <p>Varsayılan olarak hiçbir kullanıcı verisi üçüncü taraflara paylaşılmaz. Tek istisna, kullanıcı <em>manually</em> bir dış bağlantıya tıklarsa (örneğin BuyMe bağlantısı); bu durumda o hedef site ziyaret edilir ve kendi veri politikalarını uygulayabilir.</p>
 
     <h2>Güvenlik</h2>
     <p>Uzantı, hassas anahtarlar veya gizli veriler depolamaz. Paketleme sırasında kullanılan .pem gibi anahtar dosyaları repository kökünde tutulmaz; geliştirici bu anahtarları yerel ve güvenli bir konumda saklar. Kaynak kod ve paket içeriği incelemeye açıktır.</p>
+
+    <h2>Veri saklama ve silme</h2>
+    <p>Uzantı yalnızca <code>chrome.storage.local</code> içinde bir boolean ayarı saklar. Bu veri şu durumlarda silinir:
+    <ul>
+      <li>Kullanıcı uzantıyı tarayıcıdan kaldırdığında (uninstall), uzantıya ait tüm <code>chrome.storage.local</code> verileri silinir.</li>
+      <li>Kullanıcı manuel olarak uzantı ayarlarını temizlerse veya tarayıcı verilerini temizlerse ilgili veriler kaldırılabilir.</li>
+    </ul>
+    Eğer özel olarak verilerinizin tamamen silinmesini isterseniz, lütfen <a href="mailto:ozdemirosmantahir@gmail.com">ozdemirosmantahir@gmail.com</a> adresine talep gönderin; talebinizi aldıktan sonra gerekli yönlendirmeyi ve onayı sağlayacağız.</p>
+
+    <h2>Analytics ve izleme</h2>
+    <p>Bu uzantı paketinde üçüncü taraf analytics SDK'ları veya telemetri toplama kodları bulunmamaktadır. Geliştirici tarafında otomatik kullanım verisi veya hata raporlama için hiçbir dışsal analytics servisi aktif değildir.</p>
+
+    <h2>Politika değişiklikleri</h2>
+    <p>Bu gizlilik politikası gerektiğinde güncellenebilir. Önemli değişikliklerde bu sayfa güncellenecek ve son güncelleme tarihi yukarıdaki alanda belirtilecektir. Politikada değişiklik yapılması durumunda önemli değişiklikler hakkında sağlanan iletişim adresi üzerinden bilgilendirme yapılacaktır.</p>
 
     <h2>Kullanıcı Hakları ve Kontroller</h2>
     <ul>
