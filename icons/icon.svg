@@ -1,0 +1,54 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="64" cy="64" r="60" fill="url(#bgGradient)" stroke="#5a67d8" stroke-width="2"/>
+  
+  <!-- Calculator Body -->
+  <rect x="32" y="28" width="64" height="72" rx="8" ry="8" fill="url(#iconGradient)" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <!-- Screen -->
+  <rect x="38" y="34" width="52" height="16" rx="2" ry="2" fill="#2d3748"/>
+  
+  <!-- Display Numbers -->
+  <text x="84" y="46" font-family="Arial, sans-serif" font-size="10" fill="#00ff88" text-anchor="end" font-weight="bold">95.5</text>
+  
+  <!-- Calculator Buttons -->
+  <!-- Row 1 -->
+  <circle cx="44" cy="60" r="4" fill="#4a5568"/>
+  <circle cx="56" cy="60" r="4" fill="#4a5568"/>
+  <circle cx="68" cy="60" r="4" fill="#4a5568"/>
+  <circle cx="80" cy="60" r="4" fill="#e53e3e"/>
+  
+  <!-- Row 2 -->
+  <circle cx="44" cy="72" r="4" fill="#4a5568"/>
+  <circle cx="56" cy="72" r="4" fill="#4a5568"/>
+  <circle cx="68" cy="72" r="4" fill="#4a5568"/>
+  <circle cx="80" cy="72" r="4" fill="#e53e3e"/>
+  
+  <!-- Row 3 -->
+  <circle cx="44" cy="84" r="4" fill="#4a5568"/>
+  <circle cx="56" cy="84" r="4" fill="#4a5568"/>
+  <circle cx="68" cy="84" r="4" fill="#4a5568"/>
+  <circle cx="80" cy="84" r="4" fill="#e53e3e"/>
+  
+  <!-- Row 4 -->
+  <ellipse cx="50" cy="92" rx="10" ry="4" fill="#4a5568"/>
+  <circle cx="68" cy="92" r="4" fill="#4a5568"/>
+  <circle cx="80" cy="92" r="4" fill="#38a169"/>
+  
+  <!-- Grade symbols -->
+  <text x="20" y="25" font-family="Arial, sans-serif" font-size="12" fill="#667eea" font-weight="bold">A+</text>
+  <text x="100" y="25" font-family="Arial, sans-serif" font-size="10" fill="#764ba2" font-weight="bold">85</text>
+  <text x="20" y="110" font-family="Arial, sans-serif" font-size="10" fill="#e53e3e" font-weight="bold">FF</text>
+  <text x="100" y="110" font-family="Arial, sans-serif" font-size="12" fill="#38a169" font-weight="bold">✓</text>
+</svg>

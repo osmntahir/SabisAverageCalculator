@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (coffeeBtn) {
     coffeeBtn.addEventListener('click', function (e) {
       e.preventDefault();
-  // Buy Me Coffee link
-  chrome.tabs.create({ url: 'https://www.buymeacoffee.com/osmntahir' });
+      // Buy Me Coffee link
+      chrome.tabs.create({ url: 'https://www.buymeacoffee.com/osmntahir' });
     });
   }
 });

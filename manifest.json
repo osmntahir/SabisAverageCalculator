@@ -1,24 +1,40 @@
 {
-    "manifest_version": 3,
-    "name": "Sabis Not Hesaplayıcı",
-    "version": "1.0",
-    "description": "This extension calculates the average grades of the course notes on web pages.",
-    "permissions": [
-      "activeTab",
-      "storage",
-      "scripting"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "action": {
-      "default_popup": "popup.html"
-    },
-    "content_scripts": [
-      {
-        "matches": ["https://obs.sabis.sakarya.edu.tr/*"],
-        "js": ["content.js"]
-      }
-    ]
-  }
-  
+  "manifest_version": 3,
+  "name": "Sabis Not Hesaplayıcı",
+  "version": "1.0",
+  "description": "Sabis öğrencileri için not ortalaması hesaplama eklentisi",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Sabis Not Hesaplayıcı",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://obs.sabis.sakarya.edu.tr/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
