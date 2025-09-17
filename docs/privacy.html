@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gizlilik Politikası — Sabis Not Hesaplayıcı</title>
+  <style>
+    body { font-family: Inter, "Segoe UI", Tahoma, Arial, sans-serif; background: #f7f8fb; color: #222; padding: 32px; }
+    .container { max-width: 820px; margin: 0 auto; background: #fff; padding: 28px; border-radius: 10px; box-shadow: 0 8px 30px rgba(20,20,50,0.06); }
+    h1 { color: #4b33d5; margin-bottom: 8px; }
+    p { line-height: 1.6; }
+    h2 { margin-top: 20px; color: #333; }
+    ul { margin-left: 18px; }
+    footer { margin-top: 24px; font-size: 13px; color: #666; }
+    .note { background: #f0f7ff; border-left: 4px solid #4b33d5; padding: 12px; border-radius: 6px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gizlilik Politikası</h1>
+    <p>Bu sayfa <strong>Sabis Not Hesaplayıcı</strong> Chrome uzantısının gizlilik uygulamalarını açıklar. Uzantının amacı, kullanıcıların Sabis OBS sayfalarındaki not tabloları üzerinde yerel olarak not ortalaması hesaplaması sağlamaktır. Aşağıda hangi verilerin işlendiği, hangi izinlerin neden gerektiği ve kullanıcı kontrol seçenekleri detaylandırılmıştır.</p>
+
+    <h2>Kısa Özet</h2>
+    <p>Uzantı <strong>kişisel veri toplamaz</strong> ve hiçbir veriyi harici sunuculara göndermez. Tüm hesaplamalar ve veriler kullanıcının tarayıcısında, sadece ziyaret edilen Sabis sayfaları üzerinde yerel olarak işlenir. Uzantı yalnızca bir boolean ayarı (`extensionEnabled`) <code>chrome.storage.local</code> içinde saklar.</p>
+
+    <h2>Hangi veriler işlenir?</h2>
+    <ul>
+      <li><strong>Sayfa DOM verisi:</strong> Uzantı, yalnızca kullanıcının açık olan Sabis OBS sayfasındaki not tablolarını okuyarak hesaplama yapar. Bu okuma tarayıcı içindeki DOM üzerinden gerçekleşir; veriler uzantı tarafından hiçbir yere gönderilmez.</li>
+      <li><strong>Yerel ayar:</strong> Uzantı açık/kapalı durumunu saklamak için <code>chrome.storage.local</code> içine tek bir boolean değer yazar. Bu değer kişisel veri olarak değerlendirilmez.</li>
+      <li><strong>Kullanıcı girdileri:</strong> Kullanıcı, bazı boş not hücrelerine manuel not girebilir; bu girişler yalnızca ilgili sayfa üzerinde hesaplama amaçlı kullanılır ve sunucuya aktarılmaz.</li>
+    </ul>
+
+    <h2>Neden izin isteniyor?</h2>
+    <ul>
+      <li><strong>activeTab:</strong> Kullanıcının popup'ta etkileşimi sonucu aktif sekmeye erişmek ve gerektiğinde sekmeyi yenileyerek uzantı durumunu uygulamak için gereklidir. Bu erişim yalnızca kullanıcının doğrudan eylemiyle gerçekleşir.</li>
+      <li><strong>Host izni (https://obs.sabis.sakarya.edu.tr/*):</strong> Uzantı yalnızca Sabis OBS sayfalarında çalışır. Bu ana makine izni, DOM içindeki not tablolarını bulup yerel hesaplama yapmak için gereklidir. Uzantı diğer sitelere erişmez.</li>
+      <li><strong>scripting:</strong> Sayfaya input alanları veya stil eklemek gibi küçük DOM değişiklikleri yapmak amacıyla kullanılır. Bu değişiklikler kullanıcının ziyaret ettiği sayfayla sınırlıdır ve kullanıcı tarafından tetiklenir veya uzantı etkinse otomatik olarak uygulanır.</li>
+      <li><strong>storage:</strong> Uzantının açık/kapalı durumunu saklamak için gereklidir (sadece bir boolean).</li>
+    </ul>
+
+    <div class="note">
+      <strong>Not:</strong> Bu uzantı herhangi bir uzak JavaScript veya WebAssembly (Wasm) çalıştırmaz. Popup görünümünde görsel ikonlar için Font Awesome CSS CDN'i kullanılmış olabilir; bu statik CSS dosyası iş mantığını veya kullanıcı verilerini etkilemez. İstenirse ikonlar paket içine alınarak CDN kullanılmadan çalışacak şekilde güncellenebilir.
+    </div>
+
+    <h2>Veri paylaşımı ve üçüncü taraflar</h2>
+  <p>Uzantı, kullanıcı verilerini üçüncü taraf sunuculara <strong>göndermez</strong>. Kullanıcı tarafından girilen notlar, hesaplanan ortalamalar veya extension ayarları (sadece bir boolean) toplanmaz veya paylaşılmaz.</p>
+
+  <h3>Üçüncü taraf bağlantıları ve statik kaynaklar</h3>
+  <p>Popup görünümünde kullanılan bazı görsel kaynaklar (ör. Font Awesome CSS) bir CDN üzerinden yükleniyor olabilir. Bu CSS dosyası yalnızca ikon gösterimi içindir ve uzantının iş mantığını veya kullanıcı verilerini çalıştırmaz ya da göndermez. Ayrıca popup'ta yer alan "Buy Me a Coffee" butonu kullanıcıyı <a href="https://www.buymeacoffee.com/osmntahir" target="_blank" rel="noopener noreferrer">buymeacoffee.com</a> adresine yönlendirir; bu yönlendirme kullanıcının açıkça tıkladığı bir eylemdir ve uzantı tarafından otomatik veri paylaşımı yapılmaz.
+
+  <p><strong>Önemli:</strong> Harici sitelere yapılan yönlendirmelerde o siteler kendi gizlilik uygulamalarına göre veri toplayabilir (ör. çerezler, analytics). Bu tür harici sitelerin veri uygulamaları bu uzantının kontrolü dışındadır.</p>
+
+  <h3>Üçüncü taraflara veri paylaşımı</h3>
+  <p>Varsayılan olarak hiçbir kullanıcı verisi üçüncü taraflara paylaşılmaz. Tek istisna, kullanıcı <em>manually</em> bir dış bağlantıya tıklarsa (örneğin BuyMe bağlantısı); bu durumda o hedef site ziyaret edilir ve kendi veri politikalarını uygulayabilir.</p>
+
+    <h2>Güvenlik</h2>
+    <p>Uzantı, hassas anahtarlar veya gizli veriler depolamaz. Paketleme sırasında kullanılan .pem gibi anahtar dosyaları repository kökünde tutulmaz; geliştirici bu anahtarları yerel ve güvenli bir konumda saklar. Kaynak kod ve paket içeriği incelemeye açıktır.</p>
+
+    <h2>Veri saklama ve silme</h2>
+    <p>Uzantı yalnızca <code>chrome.storage.local</code> içinde bir boolean ayarı saklar. Bu veri şu durumlarda silinir:
+    <ul>
+      <li>Kullanıcı uzantıyı tarayıcıdan kaldırdığında (uninstall), uzantıya ait tüm <code>chrome.storage.local</code> verileri silinir.</li>
+      <li>Kullanıcı manuel olarak uzantı ayarlarını temizlerse veya tarayıcı verilerini temizlerse ilgili veriler kaldırılabilir.</li>
+    </ul>
+    Eğer özel olarak verilerinizin tamamen silinmesini isterseniz, lütfen <a href="mailto:ozdemirosmantahir@gmail.com">ozdemirosmantahir@gmail.com</a> adresine talep gönderin; talebinizi aldıktan sonra gerekli yönlendirmeyi ve onayı sağlayacağız.</p>
+
+    <h2>Analytics ve izleme</h2>
+    <p>Bu uzantı paketinde üçüncü taraf analytics SDK'ları veya telemetri toplama kodları bulunmamaktadır. Geliştirici tarafında otomatik kullanım verisi veya hata raporlama için hiçbir dışsal analytics servisi aktif değildir.</p>
+
+    <h2>Politika değişiklikleri</h2>
+    <p>Bu gizlilik politikası gerektiğinde güncellenebilir. Önemli değişikliklerde bu sayfa güncellenecek ve son güncelleme tarihi yukarıdaki alanda belirtilecektir. Politikada değişiklik yapılması durumunda önemli değişiklikler hakkında sağlanan iletişim adresi üzerinden bilgilendirme yapılacaktır.</p>
+
+    <h2>Kullanıcı Hakları ve Kontroller</h2>
+    <ul>
+      <li>Kullanıcı istediği zaman popup üzerinden uzantıyı devre dışı bırakabilir (toggle kapatıldığında uzantı sayfa üzerinde işlem yapmaz).</li>
+      <li>Eğer kullanıcı isterse uzantı tamamen tarayıcı uzantıları listesinden kaldırılabilir.</li>
+    </ul>
+
+    <h2>İletişim</h2>
+    <p>Bu gizlilik politikası veya uzantı hakkında sorularınız için: <a href="mailto:ozdemirosmantahir@gmail.com">ozdemirosmantahir@gmail.com</a></p>
+
+    <footer>
+      <small>Son güncelleme: 17 Eylül 2025</small>
+    </footer>
+  </div>
+</body>
+</html>
