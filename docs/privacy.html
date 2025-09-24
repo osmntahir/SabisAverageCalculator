@@ -63,24 +63,36 @@
             To perform its function, the extension accesses data classified as "Website Content." This data includes:
         </p>
         <ul>
-            <li>Course information, credit values, and grades from the SABİS transcript page.</li>
+            <li>Course information, credit values, and grades from the SABİS transcript page at <code>https://obs.sabis.sakarya.edu.tr/</code></li>
         </ul>
         <p>
-            This data is used momentarily for the sole purpose of calculation and is <strong>absolutely not</strong> saved, stored, sent to our servers, or shared with any third parties. All calculations happen locally on your browser.
+            This data is used <strong>exclusively</strong> for real-time grade average calculation and is <strong>never</strong> saved, stored, transmitted to servers, or shared with any third parties. All calculations happen locally within your browser and the data is only processed momentarily.
         </p>
 
-        <h2>Justification for Permissions</h2>
+        <h2>Extension Settings Storage</h2>
+        <p>
+            The extension uses Chrome's built-in storage API to remember only one simple setting: whether the extension is enabled or disabled (on/off). This setting:
+        </p>
+        <ul>
+            <li>Contains <strong>no personal information whatsoever</strong></li>
+            <li>Is stored securely using Chrome's official storage system</li>
+            <li>Can sync across your Chrome browsers when signed in (optional Chrome feature)</li>
+            <li>Can be deleted by uninstalling the extension</li>
+        </ul>
+
+        <h2>Justification for Minimal Permissions</h2>
+        <p>This extension requests only the minimal permissions necessary for its single purpose:</p>
         <ul>
             <li>
-                <strong>Host (<code>https://obs.sabis.sakarya.edu.tr/*</code>) and <code>scripting</code> Permissions:</strong> These permissions are mandatory for the extension to operate on the specified SABİS page, read the grade table, and display the calculated average. The extension does not run or read data on any other website.
+                <strong><code>storage</code> Permission:</strong> Required to save your on/off preference for the extension. This uses Chrome's secure storage system and contains no personal data - only a simple boolean value (true/false) indicating if the extension should be active.
             </li>
             <li>
-                <strong><code>storage</code> Permission:</strong> This is used to save the user's preference for the extension's state ("on" or "off") in your browser's local storage. No personal data is stored here.
-            </li>
-            <li>
-                <strong><code>activeTab</code> Permission:</strong> This permission allows the extension to gain temporary access to the active tab when the user clicks the extension's icon. This is a secure method that is only triggered by user interaction.
+                <strong>Content Scripts on <code>https://obs.sabis.sakarya.edu.tr/*</code>:</strong> The extension operates exclusively on SABİS pages to read grade tables and display calculated averages. It cannot and does not access any other websites or data.
             </li>
         </ul>
+        <p>
+            <strong>Important:</strong> We deliberately avoided requesting permissions like <code>activeTab</code>, <code>scripting</code>, or broad host permissions to minimize privacy impact and ensure Google Chrome Web Store approval.
+        </p>
 
         <h2>Data Sharing and Security</h2>
         <p>

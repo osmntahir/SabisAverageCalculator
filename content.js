@@ -1,9 +1,39 @@
-chrome.storage.local.get('extensionEnabled', function (data) {
-  // Toggle kapalıysa hiçbir işlem yapma
-  if (!data.extensionEnabled) {
-    return;
-  }
+// Content script - Not hesaplama işlevselliği
 
+// Chrome storage'dan extension durumunu kontrol et
+function checkExtensionState(callback) {
+  chrome.storage.sync.get('extensionEnabled', function(data) {
+    // İlk kez kullanım varsayılan true, sonrasında storage'dan oku
+    const isEnabled = data.extensionEnabled !== undefined ? data.extensionEnabled : true;
+    
+    // İlk kurulumsa storage'a kaydet
+    if (data.extensionEnabled === undefined) {
+      chrome.storage.sync.set({ extensionEnabled: true });
+    }
+    
+    console.log('Extension durumu kontrol edildi:', isEnabled);
+    callback(isEnabled);
+  });
+}
+
+// Mevcut ortalama satırlarını ve input alanlarını kaldıran fonksiyon
+function removeExistingAverageRows() {
+  // Ortalama satırlarını kaldır
+  const averageRows = document.querySelectorAll('.average-grade-row');
+  averageRows.forEach(row => row.remove());
+  
+  // Eklediğimiz input alanlarını da kaldır
+  const gradeInputs = document.querySelectorAll('.grade-input');
+  gradeInputs.forEach(input => {
+    const cell = input.parentElement;
+    if (cell) {
+      cell.innerHTML = ''; // Hücreyi temizle
+    }
+  });
+}
+
+// Ana işlev - not hesaplama
+function initializeGradeCalculator() {
   // Sayfadaki tüm "ders kartlarını" seçiyoruz
   const lessonCards = document.querySelectorAll('.card-custom.card-stretch');
 
@@ -245,4 +275,65 @@ chrome.storage.local.get('extensionEnabled', function (data) {
       return 'red';
     }
   }
+}
+
+// Ana çalışma fonksiyonu
+function runExtension() {
+  checkExtensionState(function(isEnabled) {
+    console.log('Extension durumu:', isEnabled);
+    
+    if (!isEnabled) {
+      console.log('Extension pasif - ortalama hesaplamaları kaldırılıyor');
+      removeExistingAverageRows();
+      return;
+    }
+    
+    console.log('Extension aktif - not hesaplama başlatılıyor');
+    initializeGradeCalculator();
+  });
+}
+
+// Sayfa yüklendiğinde çalıştır
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', runExtension);
+} else {
+  runExtension();
+}
+
+// Storage değişikliklerini dinle
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+  if (changes.extensionEnabled) {
+    console.log('Storage değişti - yeni değer:', changes.extensionEnabled.newValue);
+    setTimeout(runExtension, 100);
+  }
+});
+
+// Sayfa değişikliklerini izle (SPA durumları için)
+const observer = new MutationObserver(function(mutations) {
+  let shouldReinit = false;
+  mutations.forEach(function(mutation) {
+    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+      // Yeni grade tablosu eklendiğini kontrol et
+      for (let node of mutation.addedNodes) {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          if (node.classList && (node.classList.contains('card-custom') || 
+              node.querySelector && node.querySelector('.card-custom.card-stretch'))) {
+            shouldReinit = true;
+            break;
+          }
+        }
+      }
+    }
+  });
+  
+  if (shouldReinit) {
+    // Extension durumunu kontrol ederek çalıştır
+    setTimeout(runExtension, 500);
+  }
+});
+
+// Observer'ı başlat
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
 });
