@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SABİS Öğrenci Yardım Eklentisi</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+  <header>
+    <div class="header-title">
+      <h1>SABİS Öğrenci Yardım Eklentisi</h1>
+      <div class="note-toggle">
+        <span id="status" class="note-status">Yükleniyor...</span>
+        <label class="toggle">
+          <input type="checkbox" id="extToggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+    <button id="refresh-button" title="Yenile">&#x21bb;</button>
+  </header>
+
+  <nav id="mode-tabs" role="tablist">
+    <button type="button" role="tab" data-mode-tab="assignments" aria-selected="true">
+      Ödevler
+    </button>
+    <button type="button" role="tab" data-mode-tab="exams" aria-selected="false">
+      Kısa Sınavlar
+    </button>
+  </nav>
+
+  <section id="status-area">
+    <span id="status-message">Veriler toplanıyor...</span>
+  </section>
+
+  <div id="filter-bar">
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Ders veya ödev ara..." />
+      <span class="search-icon">🔍</span>
+    </div>
+    <select id="sort-select">
+      <option value="dateAsc">Tarihe Göre (Yakın)</option>
+      <option value="dateDesc">Tarihe Göre (Uzak)</option>
+      <option value="nameAsc">İsme Göre (A-Z)</option>
+      <option value="nameDesc">İsme Göre (Z-A)</option>
+    </select>
+  </div>
+
+  <nav id="category-tabs" role="tablist">
+    <button type="button" role="tab" data-category-tab="dueSoon" aria-selected="true">
+      Yaklaşan
+    </button>
+    <button type="button" role="tab" data-category-tab="longTerm" aria-selected="false">
+      Uzun Süreli
+    </button>
+    <button type="button" role="tab" data-category-tab="overdue" aria-selected="false">
+      Süresi Geçenler
+    </button>
+  </nav>
+
+  <main id="assignments-container" hidden>
+    <section class="category" data-category="dueSoon" role="tabpanel">
+      <div class="category-body"></div>
+    </section>
+    <section class="category" data-category="longTerm" role="tabpanel" hidden>
+      <div class="category-body"></div>
+    </section>
+    <section class="category" data-category="overdue" role="tabpanel" hidden>
+      <div class="category-body"></div>
+    </section>
+  </main>
+
+  <main id="exams-container" hidden>
+    <section class="category" data-category="dueSoon" role="tabpanel">
+      <div class="category-body"></div>
+    </section>
+    <section class="category" data-category="longTerm" role="tabpanel" hidden>
+      <div class="category-body"></div>
+    </section>
+    <section class="category" data-category="overdue" role="tabpanel" hidden>
+      <div class="category-body"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span id="last-updated"></span>
+    <a id="open-github" href="https://github.com/suleymansametkaya" target="_blank" rel="noreferrer">GitHub</a>
+    <a id="open-sabis" href="#" target="_blank" rel="noreferrer">SABİS'i Aç</a>
+    <a id="open-settings" href="#" target="_blank" rel="noreferrer">Ayarlar</a>
+  </footer>
+
+  <template id="assignment-template">
+    <article class="assignment-card">
+      <div class="assignment-title"></div>
+      <div class="assignment-meta">
+        <span class="due-label"></span>
+        <span class="due-countdown"></span>
+      </div>
+      <div class="assignment-actions">
+        <a class="calendar-btn" href="#" target="_blank" rel="noreferrer" title="Google Takvim'e Ekle">
+          📅 Takvime Ekle
+        </a>
+      </div>
+    </article>
+  </template>
+
+  <template id="exam-template">
+    <article class="assignment-card">
+      <div class="assignment-title"></div>
+      <div class="assignment-meta">
+        <span class="due-label"></span>
+        <span class="due-countdown"></span>
+      </div>
+      <div class="exam-actions">
+        <a class="calendar-btn" href="#" target="_blank" rel="noreferrer" title="Google Takvim'e Ekle">
+          📅 Takvime Ekle
+        </a>
+        <a class="exam-join" href="#" target="_blank" rel="noreferrer">Sınava Katıl</a>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="popup.js"></script>
+</body>
+
+</html>

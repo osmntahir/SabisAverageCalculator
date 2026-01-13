@@ -1,0 +1,370 @@
+:root {
+  color-scheme: dark;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  background: #101726;
+  color: #f5f7fa;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  max-width: 420px;
+  background: inherit;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .header-title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+header h1 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.note-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.note-status {
+  font-size: 0.82rem;
+  color: #cbd5f5;
+}
+
+.toggle {
+  position: relative;
+  width: 38px;
+  height: 22px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #475569;
+  transition: 0.2s ease;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #f8fafc;
+  transition: 0.2s ease;
+}
+
+.toggle input:checked+.slider {
+  background: #22c55e;
+}
+
+.toggle input:checked+.slider::before {
+  transform: translateX(16px);
+}
+
+#refresh-button {
+  border: none;
+  background: #1f2a3a;
+  color: #f5f7fa;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+#refresh-button:hover {
+  background: #274059;
+  transform: rotate(90deg);
+}
+
+#status-area {
+  padding: 10px 12px;
+  background: #1a2230;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+#filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.search-container {
+  position: relative;
+  flex: 1;
+}
+
+#search-input {
+  width: 100%;
+  padding: 8px 10px 8px 32px;
+  border: none;
+  background: #182235;
+  color: #f8fafc;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+#search-input:focus {
+  outline: none;
+  background: #1f2a3a;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+#sort-select {
+  padding: 8px 10px;
+  border: none;
+  background: #182235;
+  color: #dbeafe;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+#sort-select:hover {
+  background: #1f2a3a;
+}
+
+#sort-select:focus {
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+#mode-tabs {
+  display: flex;
+  gap: 8px;
+  background: #111a2a;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+#mode-tabs button {
+  flex: 1 1 0;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: #182235;
+  color: #dbeafe;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#mode-tabs button[aria-selected="true"] {
+  background: #2563eb;
+  color: #f8fafc;
+}
+
+#mode-tabs button:hover {
+  background: #1f3a65;
+}
+
+#category-tabs {
+  display: flex;
+  gap: 8px;
+  background: #111a2a;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+#category-tabs button {
+  flex: 1 1 0;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: #182235;
+  color: #dbeafe;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#category-tabs button[aria-selected="true"] {
+  background: #2563eb;
+  color: #f8fafc;
+}
+
+#category-tabs button:hover {
+  background: #1f3a65;
+}
+
+main {
+  background: #111a2a;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.category[hidden] {
+  display: none;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.category-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#assignments-container .category.empty .category-body::before {
+  content: "Bu kategoride ödev bulunamadı.";
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+#exams-container .category.empty .category-body::before {
+  content: "Bu kategoride sınav bulunamadı.";
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.assignment-card {
+  background: #1d2535;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.assignment-card:hover,
+.assignment-card:focus-within {
+  border-color: #3b82f6;
+  background: #202f43;
+}
+
+.assignment-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.assignment-meta {
+  display: flex;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #cbd5f5;
+}
+
+.assignment-meta .due-countdown {
+  font-weight: 500;
+}
+
+.exam-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.exam-join {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #f8fafc;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.exam-join:hover {
+  background: #1d4ed8;
+}
+
+footer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #8ea2c0;
+}
+
+footer a {
+  color: #60a5fa;
+  text-decoration: none;
+  flex: 1 1 0;
+  text-align: center;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.assignment-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.calendar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: #16a34a;
+  color: #f8fafc;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  gap: 4px;
+  transition: background 0.2s ease;
+}
+
+.calendar-btn:hover {
+  background: #15803d;
+}
+
+.exam-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}

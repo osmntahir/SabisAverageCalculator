@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SABİS Öğrenci Yardımcısı Ayarlar</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    body {
+      margin: 0 auto;
+      max-width: 560px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    input[type="number"] {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: inherit;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px -1px rgba(37, 99, 235, 0.2);
+    }
+
+    #status {
+      font-size: 0.9rem;
+      text-align: center;
+      min-height: 20px;
+    }
+
+    /* Switch Button CSS */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #475569;
+      transition: .3s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: #2563eb;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2563eb;
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(20px);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Ayarlar</h1>
+  <form id="settings-form">
+    <label>
+      Yaklaşan Teslimat Eşiği (Gün)
+      <input type="number" id="due-soon-days" min="0" max="30" required />
+    </label>
+    <label>
+      Uzun Süreli Kabul Edilen Minimum Gün
+      <input type="number" id="long-term-days" min="0" max="180" required />
+    </label>
+
+    <div
+      style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: #1e293b; border-radius: 8px; border: 1px solid #334155;">
+      <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">Harf Notu Açıklanan Derslerde Hesaplayıcıyı
+        Göster</span>
+      <label class="switch">
+        <input type="checkbox" id="show-calculator-announced">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <button type="submit" style="margin-top: 10px;">💾 Ayarları Kaydet</button>
+  </form>
+  <div id="status"></div>
+  <script type="module" src="settings.js"></script>
+</body>
+
+</html>
