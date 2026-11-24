@@ -2,15 +2,15 @@
 
 // Chrome storage'dan extension durumunu kontrol et
 function checkExtensionState(callback) {
-  chrome.storage.sync.get('extensionEnabled', function(data) {
+  chrome.storage.sync.get('extensionEnabled', function (data) {
     // İlk kez kullanım varsayılan true, sonrasında storage'dan oku
-    const isEnabled = data.extensionEnabled !== undefined ? data.extensionEnabled : true;
-    
+    const isEnabled = data?.extensionEnabled !== undefined ? data.extensionEnabled : true;
+
     // İlk kurulumsa storage'a kaydet
-    if (data.extensionEnabled === undefined) {
+    if (data?.extensionEnabled === undefined) {
       chrome.storage.sync.set({ extensionEnabled: true });
     }
-    
+
     console.log('Extension durumu kontrol edildi:', isEnabled);
     callback(isEnabled);
   });
@@ -21,7 +21,7 @@ function removeExistingAverageRows() {
   // Ortalama satırlarını kaldır
   const averageRows = document.querySelectorAll('.average-grade-row');
   averageRows.forEach(row => row.remove());
-  
+
   // Eklediğimiz input alanlarını da kaldır
   const gradeInputs = document.querySelectorAll('.grade-input');
   gradeInputs.forEach(input => {
@@ -190,7 +190,7 @@ function initializeGradeCalculator() {
       if (!calismaTipiCell) return;
 
       const calismaTipi = calismaTipiCell.textContent.trim().toLowerCase();
-      
+
       // Bütünleme varsa "final" satırını atla
       if (hasButunleme && calismaTipi.includes('final')) {
         return;
@@ -279,15 +279,15 @@ function initializeGradeCalculator() {
 
 // Ana çalışma fonksiyonu
 function runExtension() {
-  checkExtensionState(function(isEnabled) {
+  checkExtensionState(function (isEnabled) {
     console.log('Extension durumu:', isEnabled);
-    
+
     if (!isEnabled) {
       console.log('Extension pasif - ortalama hesaplamaları kaldırılıyor');
       removeExistingAverageRows();
       return;
     }
-    
+
     console.log('Extension aktif - not hesaplama başlatılıyor');
     initializeGradeCalculator();
   });
@@ -301,7 +301,7 @@ if (document.readyState === 'loading') {
 }
 
 // Storage değişikliklerini dinle
-chrome.storage.onChanged.addListener(function(changes, namespace) {
+chrome.storage.onChanged.addListener(function (changes, namespace) {
   if (changes.extensionEnabled) {
     console.log('Storage değişti - yeni değer:', changes.extensionEnabled.newValue);
     setTimeout(runExtension, 100);
@@ -309,15 +309,15 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
 // Sayfa değişikliklerini izle (SPA durumları için)
-const observer = new MutationObserver(function(mutations) {
+const observer = new MutationObserver(function (mutations) {
   let shouldReinit = false;
-  mutations.forEach(function(mutation) {
+  mutations.forEach(function (mutation) {
     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
       // Yeni grade tablosu eklendiğini kontrol et
       for (let node of mutation.addedNodes) {
         if (node.nodeType === Node.ELEMENT_NODE) {
-          if (node.classList && (node.classList.contains('card-custom') || 
-              node.querySelector && node.querySelector('.card-custom.card-stretch'))) {
+          if (node.classList && (node.classList.contains('card-custom') ||
+            node.querySelector && node.querySelector('.card-custom.card-stretch'))) {
             shouldReinit = true;
             break;
           }
@@ -325,7 +325,7 @@ const observer = new MutationObserver(function(mutations) {
       }
     }
   });
-  
+
   if (shouldReinit) {
     // Extension durumunu kontrol ederek çalıştır
     setTimeout(runExtension, 500);

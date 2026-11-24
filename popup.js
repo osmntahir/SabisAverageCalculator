@@ -35,19 +35,19 @@ document.addEventListener('DOMContentLoaded', function () {
       window.open('https://www.buymeacoffee.com/osmntahir', '_blank');
     });
   }
-  
+
   // Extension durumu kontrolü
-  chrome.storage.sync.get('extensionEnabled', function(data) {
+  chrome.storage.sync.get('extensionEnabled', function (data) {
     const toggle = document.getElementById('extensionToggle');
-    
+
     // İlk kez kullanım - varsayılan olarak aktif
-    let isEnabled = data.extensionEnabled;
-    
+    let isEnabled = data?.extensionEnabled;
+
     if (isEnabled === undefined) {
       isEnabled = true;
       chrome.storage.sync.set({ extensionEnabled: true });
     }
-    
+
     toggle.checked = isEnabled;
     updateUI(isEnabled);
   });
