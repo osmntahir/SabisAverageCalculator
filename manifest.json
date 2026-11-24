@@ -3,7 +3,9 @@
   "name": "Sabis Not Hesaplayıcı",
   "version": "1.0",
   "description": "Sabis öğrencileri için not ortalaması hesaplama eklentisi",
-  "permissions": ["storage"],
+  "permissions": [
+    "storage"
+  ],
   "homepage_url": "https://github.com/osmntahir/SabisAverageCalculator",
   "privacy_policy": "https://osmntahir.github.io/SabisAverageCalculator/privacy.html",
   "action": {
@@ -31,5 +33,10 @@
         "content.js"
       ]
     }
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sabis-average-calculator@extension.local"
+    }
+  }
 }
