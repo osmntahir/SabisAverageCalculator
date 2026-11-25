@@ -1,6 +1,6 @@
 chrome.storage.local.get('extensionEnabled', function (data) {
   // Toggle kapalıysa hiçbir işlem yapma
-  if (!data.extensionEnabled) {
+  if (data?.extensionEnabled === false) {
     return;
   }
 
@@ -71,8 +71,6 @@ chrome.storage.local.get('extensionEnabled', function (data) {
         }
       }
 
-
-
       const commonHeaders = {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'X-Requested-With': 'XMLHttpRequest' // jQuery .load() behavior
@@ -85,15 +83,12 @@ chrome.storage.local.get('extensionEnabled', function (data) {
 
       // 1. Önce /Grup/Notlar endpoint'ini dene (Başarı Notları)
       try {
-
         const notlarResponse = await fetch('/Grup/Notlar', {
           method: 'POST',
           headers: commonHeaders,
           body: bodyData,
           credentials: 'include'
         });
-
-
 
         if (notlarResponse.ok) {
           const html = await notlarResponse.text();
@@ -115,7 +110,6 @@ chrome.storage.local.get('extensionEnabled', function (data) {
 
               // "Ortalama", "Başarı", "Yıl Sonu"
               if (rowText.includes('ortalama') || rowText.includes('başarı') || rowText.includes('sonu')) {
-
                 // Hücreleri tersten tara (sağdaki değer genelde sonuçtur)
                 for (let i = cells.length - 1; i >= 0; i--) {
                   const text = cells[i].textContent.trim();
@@ -834,7 +828,7 @@ chrome.storage.local.get('extensionEnabled', function (data) {
     // Eğer harf notu açıklanmışsa, ayarı kontrol et
     if (isGradeAnnounced) {
       const settings = await chrome.storage.sync.get({ showCalculatorAnnounced: false });
-      if (!settings.showCalculatorAnnounced) {
+      if (!settings?.showCalculatorAnnounced) {
         return; // Ayar kapalıysa butonu ekleme
       }
     }

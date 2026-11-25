@@ -12,7 +12,7 @@ const statusEl = document.querySelector("#status");
 
 async function loadSettings() {
   const stored = await chrome.storage.sync.get(DEFAULT_SETTINGS);
-  const settings = { ...DEFAULT_SETTINGS, ...stored };
+  const settings = { ...DEFAULT_SETTINGS, ...(stored || {}) };
   dueSoonInput.value = settings.dueSoonDays;
   longTermInput.value = settings.longTermDays;
   showCalculatorAnnouncedInput.checked = settings.showCalculatorAnnounced;

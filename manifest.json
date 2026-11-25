@@ -1,35 +1,92 @@
 {
   "manifest_version": 3,
-  "name": "Sabis Not Hesaplayıcı",
-  "version": "1.0",
-  "description": "Sabis öğrencileri için not ortalaması hesaplama eklentisi",
-  "permissions": ["storage"],
-  "homepage_url": "https://github.com/osmntahir/SabisAverageCalculator",
-  "privacy_policy": "https://osmntahir.github.io/SabisAverageCalculator/privacy.html",
-  "action": {
-    "default_popup": "popup.html",
-    "default_title": "Sabis Not Hesaplayıcı",
-    "default_icon": {
-      "16": "icons/icon-16.png",
-      "32": "icons/icon-32.png",
-      "48": "icons/icon-48.png",
-      "128": "icons/icon-128.png"
-    }
-  },
+  "name": "SABİS Not Yardımcısı",
+  "version": "1.3.0",
+  "description": "Ders ve Transkript sayfalarında dinamik not / AKTS hesaplamaları.",
   "icons": {
-    "16": "icons/icon-16.png",
-    "32": "icons/icon-32.png",
-    "48": "icons/icon-48.png",
-    "128": "icons/icon-128.png"
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "tabs",
+    "offscreen",
+    "contextMenus",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://obs.sabis.sakarya.edu.tr/*",
+    "https://*.sabis.sakarya.edu.tr/*"
+  ],
+  "background": {
+    "service_worker": "src/content/background.js",
+    "scripts": [
+      "src/content/background.js"
+    ],
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/homework/popup/popup.html"
   },
   "content_scripts": [
     {
       "matches": [
-        "https://obs.sabis.sakarya.edu.tr/*"
+        "https://obs.sabis.sakarya.edu.tr/Ders*"
       ],
       "js": [
-        "content.js"
+        "src/content/grade-calculator.js",
+        "src/content/content.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://obs.sabis.sakarya.edu.tr/Transkript*"
+      ],
+      "js": [
+        "src/content/transkript.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://*.sabis.sakarya.edu.tr/*"
+      ],
+      "js": [
+        "src/homework/content/content-script.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "options_ui": {
+    "page": "src/homework/options/settings.html",
+    "open_in_tab": true
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/homework/shared/collector.js"
+      ],
+      "matches": [
+        "https://*.sabis.sakarya.edu.tr/*"
       ]
     }
-  ]
+  ],
+  "commands": {
+    "open-homework-popup": {
+      "suggested_key": {
+        "default": "Alt+H"
+      },
+      "description": "\u00d6dev takip penceresini a\u00e7"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sabis-average-calculator-v2@extension.local",
+      "strict_min_version": "109.0"
+    }
+  }
 }

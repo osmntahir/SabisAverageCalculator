@@ -1,5 +1,2 @@
-# Ignore private keys
 *.pem
-
-# Ignore packaged crx (if you keep private keys separately)
 *.crx

@@ -4,6 +4,7 @@ const DEFAULT_SETTINGS = {
 };
 
 const SABIS_HOME_URL = "https://obs.sabis.sakarya.edu.tr/";
+const SABIS_ORIGINS = ["https://*.sabis.sakarya.edu.tr/*"];
 
 const categoryOrder = ["dueSoon", "longTerm", "overdue"];
 
@@ -35,8 +36,8 @@ async function initNoteToggle() {
     return;
   }
 
-  const { extensionEnabled = true } =
-    await chrome.storage.local.get("extensionEnabled");
+  const stored = await chrome.storage.local.get("extensionEnabled");
+  const extensionEnabled = stored?.extensionEnabled ?? true;
   noteToggleEl.checked = extensionEnabled;
   noteStatusEl.textContent = extensionEnabled ? "Not aktif" : "Not pasif";
 
@@ -139,7 +140,7 @@ function generateExamCalendarUrl(title, dueTimestamp) {
 
 async function loadSettings() {
   const stored = await chrome.storage.sync.get(DEFAULT_SETTINGS);
-  return { ...DEFAULT_SETTINGS, ...stored };
+  return { ...DEFAULT_SETTINGS, ...(stored || {}) };
 }
 
 function categorizeItems(items, settings) {
@@ -189,15 +190,10 @@ function categorizeItems(items, settings) {
 
     switch (sortOption) {
       case "dateAsc": // Tarihe Göre (Yakın)
-        // En küçük mesafe (en yakın) en üstte
-        // Tarihi olmayanlar (Infinity) en sona
         if (timeA === Infinity) return 1;
         if (timeB === Infinity) return -1;
         return distA - distB;
       case "dateDesc": // Tarihe Göre (Uzak)
-        // En büyük mesafe (en uzak) en üstte
-        // Tarihi olmayanlar en başa mı sona mı? Uzak dediği için en başa mantıklı olabilir ama
-        // genelde "tarihsiz" sona atılır. Biz standart davranalım.
         if (timeA === Infinity) return 1;
         if (timeB === Infinity) return -1;
         return distB - distA;
@@ -206,7 +202,6 @@ function categorizeItems(items, settings) {
       case "nameDesc": // İsme Göre (Z-A)
         return titleB.localeCompare(titleA);
       default:
-        // Default Yakın
         if (timeA === Infinity) return 1;
         if (timeB === Infinity) return -1;
         return distA - distB;
@@ -428,7 +423,45 @@ function updateModeTabs() {
   });
 }
 
-function setActiveMode(mode) {
+async function ensureSabisHostPermission() {
+  if (!chrome.permissions?.contains) {
+    return true;
+  }
+
+  const granted = await chrome.permissions.contains({ origins: SABIS_ORIGINS });
+  if (granted) {
+    return true;
+  }
+
+  toggleMainVisibility(false);
+  statusMessageEl.innerHTML = "";
+  statusMessageEl.dataset.status = "warning";
+
+  const text = document.createElement("span");
+  text.textContent = "Ödev ve sınavları çekmek için SABİS erişim izni gerekli. ";
+
+  const grantBtn = document.createElement("button");
+  grantBtn.type = "button";
+  grantBtn.textContent = "İzin Ver";
+  grantBtn.style.cssText =
+    "margin-left: 6px; padding: 4px 10px; border: none; border-radius: 6px; background: #2563eb; color: #fff; cursor: pointer; font-weight: 600;";
+
+  grantBtn.addEventListener("click", async () => {
+    const accepted = await chrome.permissions.request({ origins: SABIS_ORIGINS });
+    if (accepted) {
+      if (activeMode === "assignments") {
+        await fetchAssignments();
+      } else {
+        await fetchExams();
+      }
+    }
+  });
+
+  statusMessageEl.append(text, grantBtn);
+  return false;
+}
+
+async function setActiveMode(mode) {
   if (!["assignments", "exams"].includes(mode)) {
     return;
   }
@@ -437,6 +470,11 @@ function setActiveMode(mode) {
   updateModeTabs();
   updateTabStates();
   updateCategoryVisibilityFor(getActiveContainer());
+
+  const hasPermission = await ensureSabisHostPermission();
+  if (!hasPermission) {
+    return;
+  }
 
   if (activeMode === "assignments") {
     fetchAssignments();
@@ -546,7 +584,12 @@ async function fetchExams() {
 }
 
 function initEventListeners() {
-  refreshButton.addEventListener("click", () => {
+  refreshButton.addEventListener("click", async () => {
+    const hasPermission = await ensureSabisHostPermission();
+    if (!hasPermission) {
+      return;
+    }
+
     if (activeMode === "assignments") {
       fetchAssignments();
     } else {
@@ -597,6 +640,12 @@ async function init() {
   updateCategoryVisibilityFor(getActiveContainer());
   updateTabStates();
   await initNoteToggle();
+
+  const hasPermission = await ensureSabisHostPermission();
+  if (!hasPermission) {
+    return;
+  }
+
   await fetchAssignments();
 }
 
