@@ -1,5 +1,5 @@
-chrome.storage.local.get('extensionEnabled', ({ extensionEnabled }) => {
-  if (extensionEnabled === false) return;
+chrome.storage.local.get('extensionEnabled', (data) => {
+  if (data?.extensionEnabled === false) return;
 
   /* ─── Sabit tablolar ─── */
   const gradeCoeffs = {

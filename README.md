@@ -1,116 +1,116 @@
-# 🎓 SABİS Not Hesaplayıcı (Chrome Uzantısı)
+# 🎓 SABİS Öğrenci Asistanı
 
-> 📦 **[Chrome Web Mağazasında şimdi yayında!](https://chromewebstore.google.com/detail/sabis-not-hesaplay%C4%B1c%C4%B1/pnghgpemgbjmihpjlndemjjhhhophdad?authuser=0&hl=tr&pli=1)**  
-> 🎯 Modern tasarımlı, kullanıcı dostu bir **SABİS not ortalaması hesaplama uzantısı**
-
-[![Versiyon](https://img.shields.io/badge/versiyon-1.0-blue.svg)](https://github.com/osmntahir/SabisAverageCalculator)
-[![Lisans](https://img.shields.io/badge/lisans-MIT-green.svg)](LICENSE)
-[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Ziyaret%20Et-orange)](https://chromewebstore.google.com/detail/sabis-not-hesaplay%C4%B1c%C4%B1/pnghgpemgbjmihpjlndemjjhhhophdad?authuser=0&hl=tr&pli=1)
+**SABİS Öğrenci Asistanı**, Sakarya Üniversitesi öğrencilerinin akademik süreçlerini daha verimli yönetmeleri için tasarlanmış kapsamlı bir tarayıcı eklentisidir. Sıradan bir not hesaplayıcıdan öte; **gerçek zamanlı ortalama simülasyonu**, **otomatik akademik takvim takibi** ve **akıllı başarı analizleri** sunan bir üretkenlik aracıdır.
 
 ---
 
-## ✨ Yeni Özellikler (v1.0)
+## 🔥 Temel Özellikler
 
-### 🎨 **Yenilenmiş Modern Tasarım**
-- **Gradient arka plan** ve **glassmorphism** efektleri
-- **FontAwesome iconları** ile zenginleştirilmiş arayüz  
-- **Responsive tasarım** ve **smooth animasyonlar**
-- **Modern toggle switch** ve **renkli feedback** sistemi
+### 1. 🖥️ Akıllı Arayüz Entegrasyonu
 
-### 🖼️ **Profesyonel Icon Seti**
-- 4 farklı boyutta (16px, 32px, 48px, 128px) **özel tasarım iconlar**
-- **Gradient renkler** ve **hesap makinesi** temalı görsel
-- Chrome mağazası için **profesyonel görünüm**
+Eklenti, SABİS'in "Notların Açıklandığı Sayfa" ve "Transkript" sayfalarını otomatik olarak tanır ve arayüze entegre olur. Sayfa yapısını bozmadan, ihtiyacınız olan kritik verileri (Başarı Notu, Sınıf Ortalaması) tablolara ekler.
 
-### ☕ **Geliştirici Desteği** *(Yakında)*
-- **Buy Me Coffee** entegrasyonu hazır (şu anda yorum satırında)
-- Kolay aktivasyon için hazır kod yapısı
+**Görsel Karşılaştırma:**
+
+| Eklenti Kapalı (Varsayılan) | Eklenti Açık (Zenginleştirilmiş Arayüz) |
+| :---: | :---: |
+| <img src="assets/images/dashboard_inactive.png" height="300" alt="SABİS Standart Görünüm"> | <img src="assets/images/dashboard_active.png" height="300" alt="Not Asistanı Aktif"> |
+
+---
+
+### 2. 🧮 Dinamik Not Simülasyonu
+
+Sistem sadece açıklanan notları göstermekle kalmaz, henüz girilmeyen notlar için bir **simülasyon ortamı** yaratır.
+
+*   **✍️ Düzenlenebilir Hücreler:** Not tablosundaki boş kutucuklar, eklenti sayesinde **yazılabilir** alanlara dönüşür.
+*   **⚡ Anlık Hesaplama:** Final veya ödev notunuzu tahmini olarak girdiğiniz anda, dersin "B.Notu" (Başarı Notu) ve "Ortalama" değeri milisaniyeler içinde güncellenir.
+*   **📊 Sınıf Ortalaması Analizi:** Eklenti arka planda çalışarak, dersin sınıf ortalamasını SABİS sunucularından çeker ve tablodaki "S.Ort." sütununa işler.
+
+<p align="center">
+  <img src="assets/images/dashboard_buttons.png" width="800" alt="Ders Kartları ve Hesaplama Butonları">
+</p>
+
+---
+
+### 3. 🧠 Gelişmiş Senaryo Analizi ve 40 Puan Kuralı
+
+Her ders kartının altında beliren **"Muhtemel Harf Notu Hesapla"** butonu, size derinlemesine bir analiz sunar.
+
+*   **Yönetmelik Uyumu (2025-2026):** Sistem, yeni yönetmeliği otomatik olarak tanır. Eğer **2025 Güz** dönemi ve sonrasındaysanız, finalden 40 puan alma zorunluluğunu kontrol eder. Final notunuz 40'ın altındaysa, ortalamanız ne kadar yüksek olursa olsun sistem sizi uyarır ve **FF/FD** senaryosunu devreye sokar.
+*   **Çan Eğrisi Tahminleri:** Sadece standart bir hesaplama yapmaz; hocanın çan eğrisine yapabileceği müdahaleleri (standart sapma değişiklikleri) simüle eder.
+    *   **🚀 En İyi Senaryo:** Hocanın ortalamayı düşürdüğü (öğrenci dostu) durum.
+    *   **📊 Olası Senaryo:** Mevcut sınıf ortalamasına göre standart dağılım.
+    *   **🛡️ En Kötü Senaryo:** Sert değerlendirme veya yüksek ortalama durumu.
+
+*(Aşağıdaki görselde hesaplama penceresinin detaylarını görebilirsiniz)*
+
+<p align="center">
+  <img src="assets/images/grade_calculator_modal.png" width="300" alt="Akıllı Hesaplama Penceresi">
+</p>
+
+---
+
+### 4. 📅 Akademik Takvim ve Görev Yönetimi
+
+Tarayıcı ikonuna tıkladığınızda açılan menü, tüm akademik takviminizi avucunuzun içine getirir.
+
+*   **İki Ayrı Sekme:** **"Ödevler"** ve **"Kısa Sınavlar"** sekmeleri sayesinde karışıklık yaşamazsınız.
+*   **Google Takvim Entegrasyonu:** Her kartın üzerindeki yeşil butona tek tıkla, o sınavı veya ödevi takviminize işleyebilirsiniz. (Gününde takvime ekler; *hatırlatıcı süresini Google Takvim varsayılan ayarlarınız belirler, ödevler için manuel olarak 1 gün seçmeniz önerilir.*)
+*   **Akıllı Arama ve Sıralama:** Yüzlerce ders arasından istediğinizi anında bulabilir, yaklaşan teslim tarihlerine veya ders ismine göre sıralama yapabilirsiniz.
+
+<table align="center" style="border: none;">
+  <tr>
+    <td align="center" style="border: none;"><strong>Ana Menü ve Sekmeler</strong></td>
+    <td align="center" style="border: none;"><strong>Filtreleme ve Sıralama</strong></td>
+  </tr>
+  <tr>
+    <td align="center" style="border: none;"><img src="assets/images/popup_main.png" width="300" alt="Popup Ana Ekran"></td>
+    <td align="center" style="border: none;"><img src="assets/images/popup_search_result.png" width="300" alt="Arama Sonuçları"></td>
+  </tr>
+</table>
+
+---
+
+### 5. 📝 Transkript ve AKTS Planlama
+
+Transkript sayfasında "AKTS Düzenle" modu devreye girer. Henüz açıklanmamış harf notlarını tahmini olarak girerek, dönem sonu Genel Not Ortalamanızı (GNO) şimdiden görebilirsiniz.
+
+<p align="center">
+  <img src="assets/images/transcript_active.png" width="800" alt="Transkript Simülasyonu">
+</p>
+
+---
+
+### 6. ⚙️ Kişiselleştirilebilir Ayarlar
+
+Eklentinin "Ayarlar" sayfasından, "Ödev Takipçisi"nin nasıl davranacağını kendi çalışma düzeninize göre özelleştirebilirsiniz.
+
+*   **Yaklaşan Teslim Süresi:** Bir ödevin "Yaklaşanlar" listesine girmesi için kaç gün kalması gerektiğini belirleyin (Örn: Son 3 gün).
+*   **Uzun Vadeli Süre:** Teslimine çok zaman olan ödevlerin "Uzun Vadeli" kategorisinde görünmesi için alt limiti seçin (Örn: 10 gün ve üzeri).
+*   **Hesaplayıcı Görünürlüğü (Switch):** "Notu açıklanan derslerde hesaplayıcıyı göster" seçeneğini aktif ederseniz, harf notunuz belli olmuş olsa bile (örneğin kontrol amaçlı veya senaryo denemek için) not hesaplama butonları görünür kalmaya devam eder.
+
+<p align="center">
+  <img src="assets/images/settings_page.png" width="500" alt="Eklenti Ayarlar Menüsü">
+</p>
 
 ---
 
 ## 🚀 Kurulum
 
-> Uzantıyı mağazadan yüklemek için 👉 [**buraya tıklayın**](https://chromewebstore.google.com/detail/sabis-not-hesaplay%C4%B1c%C4%B1/pnghgpemgbjmihpjlndemjjhhhophdad?authuser=0&hl=tr&pli=1)
-
-Manuel yükleme yapmak isterseniz:
-
-1. **Klasörü İndirin:** İlk olarak, uzantı dosyalarını içeren klasörü bilgisayarınıza indirin.
-
-2. **Geliştirici Modunu Etkinleştirin:** Tarayıcınızın ayarlarına gidin ve "Uzantılar" veya "Eklentiler" kısmını bulun. Bu bölümde, "Geliştirici modu" seçeneğini bulun ve aktif hale getirin.
-
-3. **Paketlenmemiş Uzantıyı Yükle:** Geliştirici modunu etkinleştirdikten sonra, bilgisayarınıza indirdiğiniz klasörü bulun. Ardından, tarayıcınızın uzantılar bölümüne geri dönün. "Paketlenmemiş uzantıyı yükle" (veya benzer bir seçenek) butonuna tıklayın.
-
-4. **Klasörü Seçin:** Bir dosya seçme penceresi açılacaktır. İndirdiğiniz uzantı dosyalarının bulunduğu klasörü seçin. Ana klasörü seçtiğinizden emin olun, içindeki dosyaları değil.
-
-5. **Uzantıyı Yükleyin:** Klasörü seçtikten sonra, "Aç" veya "Seç" butonuna tıklayın. Tarayıcı, klasördeki uzantı dosyalarını yükleyecek ve uzantıyı kuracaktır.
+1.  Bu projeyi bilgisayarınıza indirin (ZIP olarak veya git ile).
+2.  Chrome adres çubuğuna `chrome://extensions` yazın.
+3.  Sağ üst köşedeki **"Geliştirici modu"** anahtarını açın.
+4.  **"Paketlenmemiş öğe yükle"** butonuna tıklayın ve indirdiğiniz proje klasörünü seçin.
 
 ---
 
-## Özellikler
+## 📧 İletişim ve Destek
 
-### 1. **Girilmeyen Notlar Yerine TextBox Eklendi**
-- Girilmeyen notlar yerine istediğiniz notları girerek simüle edebilirsiniz.
+Bu proje Sakarya Üniversitesi öğrencileri tarafından, öğrenci topluluğuna katkı sağlamak amacıyla geliştirilmiştir.
 
-### 2. **Giriş Kısıtlamaları**
-- Not giriş kutularına yalnızca 0-100 arasında sayısal değerler girilebilir.
-- Harf veya sembol gibi geçersiz karakter girişleri engellenir.
-- Kullanıcı, 0'dan küçük veya 100'den büyük bir değer girmeye çalışırsa, bu girişe izin verilmez (uyarı gösterilmeden engellenir).
+*   **Süleyman Samet Kaya** - suleymansametkaya@gmail.com
+*   **Osman Tahir Özdemir** - ozdemirosmantahir@gmail.com
 
-### 3. **Dinamik Ortalama Hesaplama**
-- Kullanıcı her not girdiğinde, ortalama otomatik olarak yeniden hesaplanır ve güncellenir.
-- Ortalama, belirli aralıklara göre renklendirilir:
-  - **Yeşil:** Yüksek (75 üzeri)
-  - **Mavi:** Orta (55-75 arası)
-  - **Kırmızı:** Düşük (55 altı)
+### 🤝 Katkıda Bulunanlar
 
-### 4. **Gelişmiş Tasarım**
-- Uzantının aç/kapa (toggle) butonu yenilendi. Artık daha modern ve estetik bir görünüme sahip.
-- Arayüz, kullanıcı dostu ve tarayıcı içi tasarıma uyumlu hale getirildi.
-
-### 5. **Aç/Kapa Özelliği**
-- Uzantıyı açmak veya kapatmak için bir toggle (anahtar) düğmesi eklenmiştir.
-- Düğme değiştirilince tarayıcı sekmesi otomatik olarak yenilenir ve uzantı aktif/pasif hale gelir.
-
----
-
-## Kullanım Öncesi ve Sonrası Örneği
-
-<div style="display: flex; gap: 20px;">
-  <div>
-    <h4>Kullanım Öncesi</h4>
-    <img src="https://github.com/user-attachments/assets/d8ddb88d-3b11-4a87-8ee6-a0a792ab3329" alt="Kullanım Öncesi" style="max-width: 300px;">
-  </div>
-  <div>
-    <h4>Kullanım Sonrası</h4>
-    <img src="https://github.com/user-attachments/assets/43abd062-98d0-4ef8-b0fa-1fa26188a20c" alt="Kullanım Sonrası" style="max-width: 300px;">
-  </div>
-</div>
-
----
-
-## Destek Olmak İsterseniz
-
-Bu projeyi daha fazla geliştirmek için desteğinize ihtiyacımız var. Eğer katkıda bulunmak isterseniz:
-- **Fork** yaparak projeye katkıda bulunabilirsiniz.
-- Öneri ve geliştirme fikirlerinizi bizimle paylaşabilirsiniz.
-
-Her türlü geri bildirim bizim için çok değerli! 
-
----
-
-## İletişim
-
-- **E-posta:** ozdemirosmantahir@gmail.com
-
----
-
-## Güvenlik Notu (Önemli)
-
-Proje kök dizininde gizli anahtar dosyası (*.pem) bulunmamalıdır. Eğer daha önce paketleme için bir `.pem` dosyası kullanıldıysa, bu dosya proje kökünden taşındı.
-
-- Taşınan anahtar konumu: `~/.extension_keys/AverageCalculator.pem`
-- Mağazaya paketleme yaparken bu anahtarı kullanmak isterseniz, geçici olarak kopyalayın veya paketleme adımında ilgili yolu gösterin.
-
-Bu repository artık `.pem` dosyalarını `.git` tarafından takip etmeyecek şekilde yapılandırılmıştır (`.gitignore` eklenmiştir).
-
-Teşekkürler! 🚀
+* **Agah Faruk Küçük** - kucukagahfaruk@gmail.com - *(Mozilla Firefox desteği)*
