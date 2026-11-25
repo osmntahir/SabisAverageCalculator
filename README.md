@@ -110,3 +110,7 @@ Bu proje Sakarya Üniversitesi öğrencileri tarafından, öğrenci topluluğuna
 
 *   **Süleyman Samet Kaya** - suleymansametkaya@gmail.com
 *   **Osman Tahir Özdemir** - ozdemirosmantahir@gmail.com
+
+### 🤝 Katkıda Bulunanlar
+
+* **Agah Faruk Küçük** - kucukagahfaruk@gmail.com - *(Mozilla Firefox desteği)*
